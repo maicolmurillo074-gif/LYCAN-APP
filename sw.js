@@ -2,7 +2,7 @@
    - Páginas (HTML): primero la red (así siempre ves la versión más nueva) y, sin internet, la copia guardada.
    - Íconos y archivos propios: desde la copia guardada.
    - Nunca toca peticiones a otros sitios (Deriv, GitHub, Google): pasan directo. */
-const VERSION = 'lycan-v42';
+const VERSION = 'lycan-v43';
 const CORE = ['./', './index.html', './manifest.json', './icon-192.png', './icon-512.png', './icon-maskable-512.png'];
 
 self.addEventListener('install', (e) => {
