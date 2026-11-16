@@ -1,50 +1,60 @@
-/* LYCAN QUANTUM · service worker
-   - Páginas (HTML): primero la red (así siempre ves la versión más nueva) y, sin internet, la copia guardada.
-   - Íconos y archivos propios: desde la copia guardada.
-   - Nunca toca peticiones a otros sitios (Deriv, GitHub, Google): pasan directo. */
-const VERSION = 'lycan-v43';
-const CORE = ['./', './index.html', './manifest.json', './icon-192.png', './icon-512.png', './icon-maskable-512.png'];
+/* LYCAN QUANTUM · Service Worker */
+const CACHE_NAME = 'lycan-quantum-v45';
+const APP_SHELL = ['./', './index.html', './manifest.json'];
 
-self.addEventListener('install', (e) => {
-  e.waitUntil(caches.open(VERSION).then((c) => c.addAll(CORE)).catch(() => {}));
+self.addEventListener('install', (event) => {
+  event.waitUntil((async () => {
+    const cache = await caches.open(CACHE_NAME);
+    await cache.addAll(APP_SHELL);
+    await self.skipWaiting();
+  })());
 });
 
-self.addEventListener('activate', (e) => {
-  e.waitUntil(
-    caches.keys()
-      .then((keys) => Promise.all(keys.filter((k) => k.startsWith('lycan-') && k !== VERSION).map((k) => caches.delete(k))))
-      .then(() => self.clients.claim())
-  );
+self.addEventListener('activate', (event) => {
+  event.waitUntil((async () => {
+    const keys = await caches.keys();
+    await Promise.all(keys.filter((key) => key.startsWith('lycan-quantum-') && key !== CACHE_NAME).map((key) => caches.delete(key)));
+    await self.clients.claim();
+  })());
 });
 
-self.addEventListener('message', (e) => {
-  if (e.data === 'SKIP_WAITING') self.skipWaiting();
-});
+self.addEventListener('fetch', (event) => {
+  const request = event.request;
+  const url = new URL(request.url);
+  if (request.method !== 'GET' || url.origin !== self.location.origin) return;
 
-self.addEventListener('fetch', (e) => {
-  const req = e.request;
-  if (req.method !== 'GET') return;
-  const url = new URL(req.url);
-  if (url.origin !== self.location.origin) return;
-
-  const isPage = req.mode === 'navigate' || url.pathname.endsWith('.html') || url.pathname.endsWith('/');
-  if (isPage) {
-    e.respondWith(
-      fetch(req)
-        .then((res) => {
-          const copy = res.clone();
-          caches.open(VERSION).then((c) => c.put('./index.html', copy));
-          return res;
-        })
-        .catch(() => caches.match('./index.html').then((hit) => hit || caches.match(req)))
-    );
-  } else {
-    e.respondWith(
-      caches.match(req).then((hit) => hit || fetch(req).then((res) => {
-        const copy = res.clone();
-        caches.open(VERSION).then((c) => c.put(req, copy));
-        return res;
-      }))
-    );
+  // Navegación: prioriza la versión publicada para recibir actualizaciones.
+  if (request.mode === 'navigate') {
+    event.respondWith((async () => {
+      try {
+        const response = await fetch(request);
+        if (response && response.ok) {
+          const cache = await caches.open(CACHE_NAME);
+          cache.put('./index.html', response.clone());
+        }
+        return response;
+      } catch (_) {
+        return (await caches.match(request)) || (await caches.match('./index.html')) || Response.error();
+      }
+    })());
+    return;
   }
+
+  // Recursos locales: red primero y caché como respaldo.
+  event.respondWith((async () => {
+    try {
+      const response = await fetch(request);
+      if (response && response.ok) {
+        const cache = await caches.open(CACHE_NAME);
+        cache.put(request, response.clone());
+      }
+      return response;
+    } catch (_) {
+      return (await caches.match(request)) || Response.error();
+    }
+  })());
+});
+
+self.addEventListener('message', (event) => {
+  if (event.data === 'SKIP_WAITING') self.skipWaiting();
 });
