@@ -3,7 +3,7 @@
    - Íconos y archivos propios: desde la copia guardada.
    - Nunca toca peticiones a otros sitios (Deriv, GitHub, Google): pasan directo.
    - Notificaciones: al tocarlas abre o enfoca la app. */
-const VERSION = 'lycan-v51';
+const VERSION = 'lycan-v52';
 const CORE = ['./', './index.html', './manifest.json', './icon-192.png', './icon-512.png', './icon-maskable-512.png'];
 
 self.addEventListener('install', (e) => {
