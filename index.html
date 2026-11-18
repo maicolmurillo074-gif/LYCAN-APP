@@ -10,7 +10,7 @@
 <link rel="manifest" href="./manifest.json">
 <link rel="apple-touch-icon" href="icon-192.png">
 <link rel="icon" type="image/png" href="icon-192.png">
-<title>LYCAN QUANTUM (LYQ) v45 | Deriv API Compatible</title>
+<title>LYCAN QUANTUM (LYQ) v51 | Deriv API Compatible</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 /* ═══ VARIABLES ═══ */
@@ -866,6 +866,111 @@ body.lq-wm-off #lq-wm{display:none;}
 .bg-btn{padding:9px 12px;border-radius:8px;background:var(--s2);border:1px solid var(--bd2);color:var(--t1);font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;margin:4px 6px 4px 0;}
 .bg-btn.main{width:100%;margin-top:12px;border-color:var(--gold);color:var(--gold2);background:rgba(245,158,11,.12);padding:12px;font-size:14px;}
 .bg-note{font-size:10.5px;color:var(--t3);line-height:1.5;margin-top:12px;padding:8px;border:1px dashed var(--bd2);border-radius:8px;}
+
+/* ═══ ASISTENTE DE APRENDIZAJE ═══ */
+.asv-note{font-size:12px;color:var(--t2);line-height:1.55;padding:10px 12px;border:1px solid var(--bd2);border-radius:12px;background:var(--s2);margin-bottom:10px;}
+.asv-btns{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0;}
+.asv-h{font-size:11px;letter-spacing:.5px;text-transform:uppercase;color:var(--t3);margin:14px 0 6px;}
+.asv-empty{font-size:12px;color:var(--t3);padding:8px 0;}
+.asv-card{padding:12px;border:1px solid var(--bd2);border-radius:12px;background:var(--s2);margin-bottom:8px;}
+.asv-t{font-size:13.5px;font-weight:800;color:var(--t1);display:flex;flex-wrap:wrap;gap:6px;align-items:center;}
+.asv-w{font-size:12px;color:var(--t2);line-height:1.5;margin-top:4px;}
+.asv-tag{font-size:10px;padding:2px 8px;border-radius:10px;border:1px solid var(--bd2);color:var(--t3);font-weight:700;}
+.asv-tag.test{border-color:var(--gold);color:var(--gold2);}
+.asv-tag.ok{border-color:#10b981;color:#6ee7b7;}
+.asv-lg{font-size:11.5px;color:var(--t2);padding:6px 0;border-bottom:1px solid var(--bd);line-height:1.45;}
+.asv-lg span{color:var(--t3);margin-right:6px;}
+
+/* ═══ CENTRO DEL ASISTENTE ═══ */
+#c2-page{position:fixed;inset:0;z-index:10080;background:var(--bg,#06080c);display:flex;flex-direction:column;overflow:hidden;}
+.c2-top{display:flex;align-items:center;justify-content:space-between;padding:calc(env(safe-area-inset-top,0px) + 10px) 14px 8px;}
+.c2-title{font-size:16px;font-weight:800;color:var(--gold2);}
+.c2-x{width:34px;height:34px;border-radius:50%;border:1px solid var(--bd2);background:var(--s2);color:var(--t1);font-size:14px;cursor:pointer;}
+.c2-tabs{display:flex;gap:6px;overflow-x:auto;padding:0 12px 8px;scrollbar-width:none;}
+.c2-tabs::-webkit-scrollbar{display:none;}
+.c2-tab{flex:0 0 auto;padding:8px 12px;border-radius:14px;border:1px solid var(--bd2);background:var(--s2);color:var(--t2);font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;}
+.c2-tab.on{border-color:var(--gold);color:var(--gold2);background:rgba(245,158,11,.12);}
+.c2-body{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:4px 12px calc(env(safe-area-inset-bottom,0px) + 24px);display:flex;flex-direction:column;gap:10px;}
+.c2-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.c2-kpi{padding:10px;border:1px solid var(--bd2);border-radius:12px;background:var(--s2);display:flex;flex-direction:column;gap:2px;}
+.c2-kpi span{font-size:10px;color:var(--t3);text-transform:uppercase;letter-spacing:.4px;}
+.c2-kpi b{font-size:18px;font-family:'JetBrains Mono',monospace;}
+.c2-kpi small{font-size:10.5px;color:var(--t3);}
+.c2-card{padding:12px;border:1px solid var(--bd2);border-radius:12px;background:var(--s2);font-size:13px;color:var(--t1);line-height:1.5;}
+.c2-card.red{border-color:rgba(239,68,68,.45);}
+.c2-h{font-size:13.5px;font-weight:800;color:var(--t1);margin-bottom:6px;display:flex;gap:6px;align-items:center;flex-wrap:wrap;}
+.c2-note{font-size:12px;color:var(--t2);margin-top:6px;line-height:1.5;}
+.c2-btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;}
+.c2-btn{padding:10px 12px;border-radius:10px;border:1px solid var(--bd2);background:var(--s3,#111);color:var(--t1);font-size:12.5px;font-weight:700;cursor:pointer;font-family:inherit;}
+.c2-btn.red{border-color:rgba(239,68,68,.6);color:var(--red2);background:rgba(239,68,68,.08);}
+.c2-sel{width:100%;padding:10px;border-radius:10px;border:1px solid var(--bd2);background:var(--s2);color:var(--t1);font-size:13px;margin-top:6px;}
+.c2-tw{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-top:6px;}
+.c2-tbl{width:100%;min-width:560px;border-collapse:collapse;font-size:11.5px;}
+.c2-tbl th{text-align:right;padding:6px 4px;color:var(--t3);font-weight:700;border-bottom:1px solid var(--bd2);white-space:nowrap;}
+.c2-tbl td{text-align:right;padding:7px 4px;border-bottom:1px solid var(--bd);font-family:'JetBrains Mono',monospace;white-space:nowrap;}
+.c2-tbl th:first-child,.c2-tbl td:first-child{text-align:left;font-family:inherit;}
+.c2-row{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid var(--bd);font-size:12.5px;}
+.c2-lg{font-size:11.5px;color:var(--t2);padding:6px 0;border-bottom:1px solid var(--bd);line-height:1.45;}
+.c2-lg span{color:var(--t3);margin-right:6px;}
+
+.c2-sec{font-size:12px;font-weight:800;letter-spacing:.4px;text-transform:uppercase;color:var(--gold2);margin:8px 2px 2px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.c2-pill{font-size:10px;padding:3px 9px;border-radius:12px;border:1px solid var(--bd2);color:var(--t3);letter-spacing:.3px;}
+.c2-pill.on{border-color:var(--grn);color:var(--grn2);background:rgba(16,185,129,.1);}
+.c2-pill.arm{border-color:var(--gold);color:var(--gold2);background:rgba(245,158,11,.1);}
+.c2-lb{display:block;font-size:10.5px;color:var(--t3);text-transform:uppercase;letter-spacing:.4px;margin:2px 0 4px;}
+.c2-in{width:100%;padding:9px;border-radius:10px;border:1px solid var(--bd2);background:var(--s2);color:var(--t1);font-size:13px;font-family:inherit;box-sizing:border-box;}
+.c2-grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.c2-mini{padding:9px;border:1px solid var(--bd);border-radius:10px;background:var(--s3,#0e1116);display:flex;flex-direction:column;gap:2px;}
+.c2-mini span{font-size:10px;color:var(--t3);text-transform:uppercase;letter-spacing:.3px;}
+.c2-mini b{font-size:14px;font-family:'JetBrains Mono',monospace;}
+.c2-mini small{font-size:10.5px;}
+.c2-big{font-size:16px;font-family:'JetBrains Mono',monospace;display:block;padding-top:6px;}
+.c2-days{display:flex;gap:6px;flex-wrap:wrap;}
+.c2-day{flex:1;min-width:38px;padding:9px 0;border-radius:9px;border:1px solid var(--bd2);background:var(--s2);color:var(--t3);font-weight:700;cursor:pointer;font-family:inherit;}
+.c2-day.on{border-color:var(--gold);color:var(--gold2);background:rgba(245,158,11,.12);}
+
+/* ═══ v49 · barra inferior: «Panel T» puede desplazarse para ver todo ═══ */
+#pg-bots{padding-bottom:calc(var(--nb,64px) + 40px + env(safe-area-inset-bottom,0px));}
+#pg-bots.on{overflow-y:auto;-webkit-overflow-scrolling:touch;}
+
+/* ═══ v50 · PANEL T unificado: primero el panel, después los bots ═══ */
+.pt-panel{margin-bottom:6px;}
+.pt-sep{display:flex;align-items:center;gap:10px;margin:14px 0 10px;font-size:12px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:var(--gold2);}
+.pt-sep::before,.pt-sep::after{content:"";flex:1;height:1px;background:var(--bd2);}
+
+/* ═══ GUÍA DE USO ═══ */
+#gd-overlay{position:fixed;inset:0;z-index:10090;background:rgba(0,0,0,.82);display:flex;align-items:stretch;justify-content:center;padding:0;}
+.gd-box{background:var(--s1);color:var(--t1);width:100%;max-width:760px;height:100%;display:flex;flex-direction:column;overflow:hidden;}
+.gd-top{display:flex;align-items:center;justify-content:space-between;padding:calc(env(safe-area-inset-top,0px) + 12px) 16px 8px;}
+.gd-title{font-size:17px;font-weight:800;color:var(--gold2);}
+.gd-x{width:34px;height:34px;border-radius:50%;border:1px solid var(--bd2);background:var(--s2);color:var(--t1);cursor:pointer;}
+.gd-search{margin:0 16px 8px;padding:10px 12px;border-radius:10px;border:1px solid var(--bd2);background:var(--s2);color:var(--t1);font-size:14px;font-family:inherit;}
+.gd-toc-w{margin:0 16px 8px;font-size:12px;color:var(--t2);}
+.gd-toc-w summary{cursor:pointer;color:var(--gold2);font-weight:700;margin-bottom:6px;}
+.gd-toc{display:grid;grid-template-columns:1fr 1fr;gap:4px 10px;}
+.gd-toc a{color:var(--t2);text-decoration:none;font-size:11.5px;padding:4px 0;}
+.gd-body{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:4px 16px 16px;}
+.gd-sec{border:1px solid var(--bd2);border-radius:12px;margin:8px 0;background:var(--s2);}
+.gd-sec summary{cursor:pointer;padding:12px 14px;font-size:14px;font-weight:800;color:var(--t1);list-style:none;display:flex;align-items:center;gap:8px;}
+.gd-sec summary::-webkit-details-marker{display:none;}
+.gd-ico{font-size:18px;}
+.gd-cnt{padding:0 14px 14px;font-size:13.5px;line-height:1.65;color:var(--t2);}
+.gd-cnt h3{font-size:13.5px;color:var(--gold2);margin:14px 0 6px;}
+.gd-cnt p{margin:6px 0;}
+.gd-cnt ul,.gd-cnt ol{margin:6px 0 6px 18px;padding:0;}
+.gd-cnt li{margin:4px 0;}
+.gd-cnt b{color:var(--t1);}
+.gd-cnt code{font-family:'JetBrains Mono',monospace;font-size:12px;background:var(--s3,#111);padding:1px 5px;border-radius:5px;}
+.gd-tip,.gd-warn{margin:10px 0;padding:10px 12px;border-radius:10px;font-size:12.5px;line-height:1.55;}
+.gd-tip{border:1px solid rgba(16,185,129,.45);background:rgba(16,185,129,.08);color:var(--t1);}
+.gd-warn{border:1px solid rgba(245,158,11,.5);background:rgba(245,158,11,.08);color:var(--t1);}
+.gd-tbl{width:100%;border-collapse:collapse;font-size:12px;margin:8px 0;}
+.gd-tbl th,.gd-tbl td{padding:6px 8px;border-bottom:1px solid var(--bd);text-align:right;font-family:'JetBrains Mono',monospace;}
+.gd-tbl th{font-family:inherit;color:var(--t3);font-size:11px;}
+.gd-tbl th:first-child,.gd-tbl td:first-child{text-align:left;font-family:inherit;}
+.gd-foot{padding:10px 16px calc(env(safe-area-inset-bottom,0px) + 12px);border-top:1px solid var(--bd);}
+.gd-btn{width:100%;padding:12px;border-radius:10px;border:1px solid var(--gold);background:rgba(245,158,11,.1);color:var(--gold2);font-weight:800;font-size:13.5px;cursor:pointer;font-family:inherit;}
+.gd-empty{padding:24px;text-align:center;color:var(--t3);font-size:13px;}
 </style>
 </head>
 <body>
@@ -1036,10 +1141,9 @@ body.lq-wm-off #lq-wm{display:none;}
 <!-- MAIN -->
 <div id="main">
   <div id="dnav">
-    <button class="nt on" data-p="trade" onclick="goPage('trade')">📊 Terminal</button>
-    <button class="nt" data-p="bots" onclick="goPage('bots')">🤖 Bots + Constructor</button>
-    <button class="nt" data-p="calc" onclick="goPage('calc')">🧮 Calculadora</button>
-    <button class="nt" data-p="chat" onclick="goPage('chat')">📊 Panel</button>
+    <button class="nt on" data-p="trade" onclick="goPage('trade')">🏠 Inicio</button>
+        <button class="nt" data-p="calc" onclick="goPage('calc')">🧮 Calculadora</button>
+    <button class="nt" data-p="bots" onclick="goPage('bots')">📊 Panel T</button>
     <button class="nt" data-p="horario" onclick="goPage('horario')">⏰ Horario</button>
     <button class="nt" data-p="report" onclick="goPage('report')">📋 Informe</button>
     <button class="nt" data-p="lab" onclick="goPage('lab')">🧪 Laboratorio</button>
@@ -1566,8 +1670,8 @@ body.lq-wm-off #lq-wm{display:none;}
 
 <!-- BOTTOM NAV -->
 <div id="bnav">
-  <button class="bni on" data-p="trade" onclick="goPage('trade')"><span class="ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 15l3-4 3 2 4-6"/></svg></span><span>Terminal</span></button>
-  <button class="bni" data-p="bots" onclick="goPage('bots')"><span class="ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="8" width="16" height="11" rx="2"/><path d="M12 8V4M9 4h6"/><circle cx="9" cy="13.5" r="1.4" fill="currentColor" stroke="none"/><circle cx="15" cy="13.5" r="1.4" fill="currentColor" stroke="none"/><path d="M8 19v1.5M16 19v1.5"/></svg></span><span>Bots</span></button>
+  <button class="bni on" data-p="trade" onclick="goPage('trade')"><span class="ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 15l3-4 3 2 4-6"/></svg></span><span>Inicio</span></button>
+  <button class="bni" data-p="bots" onclick="goPage('bots')"><span class="ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="8" width="16" height="11" rx="2"/><path d="M12 8V4M9 4h6"/><circle cx="9" cy="13.5" r="1.4" fill="currentColor" stroke="none"/><circle cx="15" cy="13.5" r="1.4" fill="currentColor" stroke="none"/><path d="M8 19v1.5M16 19v1.5"/></svg></span><span>Panel T</span></button>
   <button class="bni bni-api" onclick="openApiModal()">
     <div style="position:relative;display:inline-block;">
       <span class="ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 17H7A5 5 0 0 1 7 7h2"/><path d="M15 7h2a5 5 0 1 1 0 10h-2"/><line x1="8" y1="12" x2="16" y2="12"/></svg></span>
@@ -1575,8 +1679,8 @@ body.lq-wm-off #lq-wm{display:none;}
     </div>
     <span>Conectar</span>
   </button>
-  <button class="bni" data-p="chat" onclick="goPage('chat')"><span class="ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="4" height="9" rx="1"/><rect x="10" y="6" width="4" height="14" rx="1"/><rect x="17" y="3" width="4" height="17" rx="1"/></svg></span><span>Panel</span></button>
-  <button class="bni" data-p="horario" onclick="goPage('horario')"><span class="ic"><span style="font-size:20px;line-height:1">⏰</span></span><span>Horario</span></button><button class="bni" onclick="openMoreMenu()"><span class="ic" style="font-size:22px;letter-spacing:-2px;">···</span><span>Más</span></button>
+  <button class="bni" data-p="horario" onclick="goPage('horario')"><span class="ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="7.5"/><path d="M12 9.5V13l2.6 1.6"/><path d="M4.5 4.5L2 7M19.5 4.5L22 7"/></svg></span><span>Horario</span></button>
+  <button class="bni" onclick="openMoreMenu()"><span class="ic" style="font-size:22px;letter-spacing:-2px;">···</span><span>Más</span></button>
 </div>
 <script>
 
@@ -3502,6 +3606,7 @@ function authLogin(){
   localStorage.setItem('lq_session',JSON.stringify({email:email,name:user.name,nick:user.nick,rank:userRank,isAdmin:isAdmin,ts:Date.now()}));
   hideLogin();
   try{if(typeof loadLearningProfiles==="function")loadLearningProfiles();if(typeof migrateObjectiveMartingale==="function")migrateObjectiveMartingale();}catch(e){lqSilent(e,'authLogin')}
+  try{loadSession();}catch(e){lqSilent(e,'authLogin')}
   if(isAdmin){showAdminPanel();return;}
   updateUserBar();updateMoreProfile();markOnline(email);
   try{loadSession();}catch(e){lqSilent(e,'authLogin')}
@@ -4149,6 +4254,7 @@ migrateObjectiveMartingale();
        userRank=rankFor(sess.email,_rec);
        if(_rec.nick)sess.nick=_rec.nick;if(_rec.name)sess.name=_rec.name;}
       applyAdminUI();
+      try{loadSession();}catch(e){lqSilent(e,'script')}
       if(isAdmin){hideLogin();showAdminPanel();authed=true;}
       else{
         hideLogin();updateUserBar();updateMoreProfile();markOnline(sess.email);
@@ -9176,7 +9282,7 @@ function lqUpdateBanner(reg){
    la nube no acepta una copia con muchos menos datos sin avisar ·
    versiones anteriores del respaldo (GitHub) · deshacer la última restauración
    ═══════════════════════════════════════════════════════════════════════ */
-LQ_VERSION='v45';
+LQ_VERSION='v51';
 function cloudMergeObj(localTxt,remoteTxt){
   var a={},b={};try{a=JSON.parse(localTxt||'{}');}catch(e){lqSilent(e,'cloudMergeObj');}try{b=JSON.parse(remoteTxt||'{}');}catch(e){lqSilent(e,'cloudMergeObj');}
   if(!a||typeof a!=='object'||Array.isArray(a))a={};if(!b||typeof b!=='object'||Array.isArray(b))b={};
@@ -9642,6 +9748,702 @@ function lqTokUiBuild(){
     var m=0,ia=setInterval(function(){m++;try{if(typeof currentUser!=='undefined'&&currentUser&&!connected&&!LQC.autoTried&&lqTokFlag()){LQC.autoTried=true;lqTokAuto('inicio');}if(m>90||LQC.autoTried)clearInterval(ia);}catch(e){clearInterval(ia);}},1000);};
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',go);else go();
 })();
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ASISTENTE DE APRENDIZAJE CON TU APROBACIÓN
+   · Lee TODO el historial (tradicional + horario, todos los bots).
+   · Detecta patrones y los valida con una muestra que no usó para buscarlos.
+   · Propone cambios concretos con su evidencia. NUNCA cambia nada solo.
+   · Puede probar una propuesta en PRÁCTICA (sin dinero) antes de que la apruebes.
+   · Guarda un registro: qué propuso, qué aprobaste y cómo le fue después.
+   ═══════════════════════════════════════════════════════════════════════ */
+var ASV={list:[],log:[],min:30,tr:0.6,lastRun:0,busy:false};
+try{var _av=JSON.parse(localStorage.getItem('lq_asv')||'null');if(_av&&typeof _av==='object'){ASV.list=Array.isArray(_av.list)?_av.list.slice(0,60):[];ASV.log=Array.isArray(_av.log)?_av.log.slice(-300):[];ASV.lastRun=+_av.lastRun||0;}}catch(e){lqSilent(e,'asv');}
+function asvSave(){try{localStorage.setItem('lq_asv',JSON.stringify({list:ASV.list.slice(0,60),log:ASV.log.slice(-300),lastRun:ASV.lastRun}));}catch(e){lqSilent(e,'asvSave');}}
+function asvNote(kind,text,extra){ASV.log.push(Object.assign({t:Date.now(),k:kind,m:String(text).slice(0,220)},extra||{}));if(ASV.log.length>300)ASV.log.splice(0,ASV.log.length-300);asvSave();}
+
+/* Operaciones reales (no simuladas) ordenadas por tiempo. */
+function asvOps(){return LQS.ops('all').filter(function(o){return o.at&&o.res;}).sort(function(a,b){return a.at-b.at;});}
+/* Divide en entrenamiento (70 %, antiguo) y validación (30 %, reciente, no usado para buscar). */
+function asvSplit(ops){var k=Math.max(1,Math.floor(ops.length*0.7));return {train:ops.slice(0,k),valid:ops.slice(k)};}
+function asvRate(a){var n=a.length,w=a.filter(function(o){return o.res==='WIN';}).length;return {n:n,w:w,rate:n?w/n:0};}
+
+/* Métrica de ventaja: acierto frente al equilibrio del pago (con intervalo de confianza). */
+function asvEdgeOf(ops){
+  var be=LQS.be(LQS.payRatio(ops)),r=asvRate(ops),E=LQS.edge(r.w,r.n,be,ASV.min);
+  return {n:r.n,rate:r.rate,be:be,edge:E.k,label:E.label,lo:E.lo,pnl:ops.reduce(function(a,o){return a+(Number(o.profit)||0);},0)};
+}
+
+/* Familias de patrones que el asistente sabe buscar. Cada una agrupa operaciones por una clave. */
+var ASV_FAM=[
+  {id:'hour',name:'hora del día',key:function(o){return new Date(o.at).getHours();},fmt:function(k){return k+':00–'+(k+1)+':00';}},
+  {id:'sym',name:'mercado',key:function(o){return o.sym||'?';},fmt:function(k){return k;}},
+  {id:'motor',name:'motor',key:function(o){return o.src==='sched'?'horario':'tradicional';},fmt:function(k){return k==='horario'?'bot por horario':'bot tradicional';}},
+  {id:'bot',name:'bot',key:function(o){return o.strat||'?';},fmt:function(k){return LQS.botName(k);}}
+];
+
+/* Busca propuestas: patrón fuerte en la muestra de entrenamiento Y que se mantiene en la de validación. */
+function asvAnalyze(){
+  var ops=asvOps(),props=[],SP=asvSplit(ops),tot=ops.length;
+  var notes=[];
+  if(tot<ASV.min){return {ok:false,total:tot,props:[],notes:['Hay '+tot+' operaciones reales. Necesito al menos '+ASV.min+' para proponer algo con evidencia.']};}
+  /* 1) por bot: ¿rinde por debajo del equilibrio con muestra suficiente? */
+  ASV_FAM.forEach(function(fam){
+    var gT={},gV={};
+    SP.train.forEach(function(o){var k=fam.key(o);(gT[k]=gT[k]||[]).push(o);});
+    SP.valid.forEach(function(o){var k=fam.key(o);(gV[k]=gV[k]||[]).push(o);});
+    Object.keys(gT).forEach(function(k){
+      var t=asvEdgeOf(gT[k]),v=gV[k]?asvEdgeOf(gV[k]):null;
+      if(t.n<ASV.min)return;
+      var weak=t.edge==='noedge'||(t.rate<t.be&&t.pnl<0);
+      if(!weak)return;
+      var holds=v&&v.n>=10&&v.rate<v.be;
+      if(!holds)return;                                  /* no se mantiene en datos nuevos: no se propone */
+      var all=asvEdgeOf(gT[k].concat(gV[k]));
+      props.push({
+        id:fam.id+':'+k,fam:fam.id,key:String(k),
+        kind:fam.id==='bot'?'pausar':'excluir',
+        title:fam.id==='bot'?('Pausar «'+LQS.botName(k)+'»'):('Evitar '+fam.name+' '+fmtKey(fam,k)),
+        why:'En '+all.n+' operaciones acierta '+LQS.pct(all.rate)+' y necesita '+LQS.pct(all.be)+' para no perder. '+(v?('En las últimas '+v.n+' sigue por debajo ('+LQS.pct(v.rate)+').'):''),
+        pnl:all.pnl,n:all.n,rate:all.rate,be:all.be,score:-all.pnl+(all.be-all.rate)*100,
+        test:{fam:fam.id,key:String(k),kind:fam.id==='bot'?'pausar':'excluir'}
+      });
+    });
+  });
+  props.sort(function(a,b){return b.score-a.score;});
+  /* 2) un bot que va bien: solo se sugiere revisar si lo pruebas en práctica; nunca se aplica solo */
+  if(!props.length)notes.push('No veo un patrón que se mantenga en datos nuevos. Eso es buena señal: no hay razón para cambiar nada todavía.');
+  return {ok:true,total:tot,split:{train:SP.train.length,valid:SP.valid.length},props:props.slice(0,6),notes:notes};
+}
+function fmtKey(fam,k){try{return fam.fmt(fam.id==='hour'?Number(k):k);}catch(e){return String(k);}}
+
+/* Guarda la propuesta como «pendiente» (no aplica nada). */
+function asvPropose(){
+  var R=asvAnalyze();ASV.lastRun=Date.now();
+  if(!R.ok){asvNote('info',R.notes[0]);asvSave();return R;}
+  R.props.forEach(function(p){
+    var prev=ASV.list.filter(function(x){return x.id===p.id;})[0];
+    if(prev&&(prev.state==='pendiente'||prev.state==='probando'))return;
+    if(prev&&prev.state==='descartada'&&Date.now()-prev.at<7*86400000)return;
+    if(prev&&prev.state==='aplicada')return;
+    ASV.list.unshift({id:p.id,title:p.title,why:p.why,kind:p.kind,test:p.test,state:'pendiente',at:Date.now(),n:p.n,pnl:p.pnl,rate:p.rate,be:p.be});
+  });
+  ASV.list=ASV.list.slice(0,60);
+  asvNote('propuesta','Análisis: '+R.total+' operaciones, '+R.props.length+' propuesta(s) validada(s).');
+  return R;
+}
+
+/* Práctica: prueba la propuesta en el motor de práctica sin dinero real. */
+function asvStartTest(id){
+  var p=ASV.list.filter(function(x){return x.id===id;})[0];if(!p)return;
+  if(p.state!=='pendiente')return;
+  p.state='probando';p.testAt=Date.now();p.testStake=PR&&PR.list?PR.list.length:0;
+  asvNote('practica','Empecé a probar «'+p.title+'» en práctica (2 semanas, sin dinero real).',{pid:id});
+  asvSave();try{asvRender();}catch(e){lqSilent(e,'asv');}
+}
+/* Evalúa las propuestas en práctica a los 14 días y decide si conviene aplicarlas. */
+function asvCheckTests(){
+  var now=Date.now();
+  ASV.list.forEach(function(p){
+    if(p.state!=='probando'||now-p.testAt<14*86400000)return;
+    var ops=asvOps().filter(function(o){return o.at>=p.testAt;});
+    var sel=p.test.kind==='pausar'?ops.filter(function(o){return o.strat===p.test.key;}):ops.filter(function(o){var fam=ASV_FAM.filter(function(f){return f.id===p.test.fam;})[0];return fam&&String(fam.key(o))===p.test.key;});
+    var r=asvEdgeOf(sel);
+    if(r.n<10){p.state='pendiente';p.testNote='Muy pocas operaciones en práctica ('+r.n+'). Vuelve a probar.';asvNote('practica','Prueba insuficiente de «'+p.title+'». Queda pendiente.',{pid:p.id});return;}
+    p.testRes={n:r.n,rate:r.rate,be:r.be,pnl:r.pnl};
+    p.testNote=(r.rate<r.be)?'En práctica sigue sin ventaja ('+LQS.pct(r.rate)+' vs '+LQS.pct(r.be)+'). Aplicar la regla tiene sentido.':'En práctica no pierde como antes. Revisa antes de aplicar.';
+    p.state='pendiente';asvNote('practica',p.title+' · resultado en práctica: '+p.testNote,{pid:p.id});
+  });
+  asvSave();
+}
+/* Aplicar: solo tú lo decides. Pausar un bot o excluir una franja se guarda como regla visible. */
+function asvApply(id){
+  var p=ASV.list.filter(function(x){return x.id===id;})[0];if(!p||(p.state!=='pendiente'&&p.state!=='probando'))return;
+  if(!confirm('¿Aplicar esta propuesta?\n\n'+p.title+'\n\n'+p.why+'\n\nPuedes deshacerla desde el asistente.'))return;
+  var R=asvRules();
+  if(p.kind==='pausar'){R.pausedBots[p.test.key]=true;if(typeof BOT_PREFS!=='undefined'){BOT_PREFS.paused=BOT_PREFS.paused||{};}}
+  else{R.skip.push({fam:p.test.fam,key:p.test.key,title:p.title});}
+  asvRulesSave(R);p.state='aplicada';p.appliedAt=Date.now();asvNote('aplicada','Aplicada: '+p.title,{pid:id});asvSave();
+  try{asvRender();}catch(e){lqSilent(e,'asv');}toast('✅ Regla aplicada: '+p.title,'win',3000);
+}
+function asvDiscard(id){var p=ASV.list.filter(function(x){return x.id===id;})[0];if(!p)return;p.state='descartada';p.at=Date.now();asvNote('descartada','Descartada: '+p.title,{pid:id});asvSave();try{asvRender();}catch(e){lqSilent(e,'asv');}}
+
+/* Reglas aplicadas (se pueden deshacer). Las de pausa se respetan al iniciar un bot; las de franja sirven de aviso. */
+function asvRules(){try{var r=JSON.parse(localStorage.getItem('lq_asv_rules')||'null');if(r&&typeof r==='object')return {pausedBots:r.pausedBots||{},skip:Array.isArray(r.skip)?r.skip:[]};}catch(e){lqSilent(e,'asvRules');}return {pausedBots:{},skip:[]};}
+function asvRulesSave(R){try{localStorage.setItem('lq_asv_rules',JSON.stringify(R));}catch(e){lqSilent(e,'asvRules');}}
+function asvUndo(id){
+  var p=ASV.list.filter(function(x){return x.id===id;})[0];if(!p||p.state!=='aplicada')return;
+  var R=asvRules();if(p.kind==='pausar')delete R.pausedBots[p.test.key];else R.skip=R.skip.filter(function(s){return !(s.fam===p.test.fam&&s.key===p.test.key);});
+  asvRulesSave(R);p.state='pendiente';asvNote('deshecha','Deshecha: '+p.title,{pid:id});asvSave();try{asvRender();}catch(e){lqSilent(e,'asv');}
+}
+
+/* Se respeta la pausa al iniciar un bot tradicional: no arranca si el asistente lo pausó (y tú lo aprobaste). */
+(function(){
+  var _sb=startBot;
+  startBot=function(){
+    var sel=(document.getElementById('botSel')||{}).value||currentStrat,R=asvRules();
+    if(R.pausedBots[sel]){toast('⏸ Pausado por una regla que aprobaste ('+LQS.botName(sel)+'). Quítala en el asistente para usarlo.','warn',5000);return;}
+    return _sb.apply(this,arguments);
+  };
+})();
+
+/* ── pantalla del asistente (dentro del Laboratorio, pestaña «Asistente») ── */
+function asvRender(){
+  var out=document.getElementById('asv-out');if(!out)return;
+  var R=asvRules(),ops=asvOps(),h='';
+  h+='<div class="asv-note">Lee <b>'+ops.length+'</b> operaciones reales de todos tus bots. Propone cambios con evidencia y <b>nunca los aplica sola</b>. Antes de aplicar, puedes probarlos en práctica.</div>';
+  h+='<div class="asv-btns"><button type="button" class="seg-b on" onclick="asvPropose();asvRender()">🔍 Analizar ahora</button><button type="button" class="seg-b" onclick="asvCheckTests();asvRender()">🔄 Revisar pruebas</button></div>';
+  var act=ASV.list.filter(function(p){return p.state==='pendiente'||p.state==='probando';});
+  h+='<div class="asv-h">Propuestas</div>';
+  if(!act.length)h+='<div class="asv-empty">Sin propuestas pendientes. Pulsa «Analizar ahora» para revisar tu historial.</div>';
+  act.forEach(function(p){
+    var st=p.state==='probando'?'<span class="asv-tag test">en práctica</span>':'<span class="asv-tag">pendiente</span>';
+    h+='<div class="asv-card"><div class="asv-t">'+audEsc(p.title)+' '+st+'</div><div class="asv-w">'+audEsc(p.why)+'</div>'
+     +(p.testNote?'<div class="asv-w" style="color:var(--gold2)">Práctica: '+audEsc(p.testNote)+'</div>':'')
+     +'<div class="asv-btns">'+(p.state==='pendiente'?'<button type="button" class="adm-b" onclick="asvStartTest(\''+p.id+'\');">🧪 Probar 2 semanas</button>':'')
+     +'<button type="button" class="adm-b red" onclick="asvApply(\''+p.id+'\')">✅ Aplicar</button><button type="button" class="adm-b" onclick="asvDiscard(\''+p.id+'\')">✖ Descartar</button></div></div>';
+  });
+  var ap=ASV.list.filter(function(p){return p.state==='aplicada';});
+  h+='<div class="asv-h">Reglas aplicadas</div>';
+  if(!ap.length)h+='<div class="asv-empty">Ninguna regla aplicada.</div>';
+  ap.forEach(function(p){h+='<div class="asv-card"><div class="asv-t">'+audEsc(p.title)+' <span class="asv-tag ok">activa</span></div><div class="asv-w">Desde '+audEsc(new Date(p.appliedAt).toLocaleDateString())+'</div><div class="asv-btns"><button type="button" class="adm-b" onclick="asvUndo(\''+p.id+'\')">↩ Deshacer</button></div></div>';});
+  var pr=ASV.log.slice(-40).reverse();
+  h+='<div class="asv-h">Registro de decisiones</div>';
+  if(!pr.length)h+='<div class="asv-empty">Aún no hay decisiones registradas.</div>';
+  pr.forEach(function(x){h+='<div class="asv-lg"><span>'+audAgo(x.t)+'</span> '+audEsc(x.m)+'</div>';});
+  out.innerHTML=h;
+}
+function asvBuild(){return true;} /* el asistente ahora vive solo en «Centro del asistente» */
+(function(){
+  var _gp=goPage;
+  goPage=function(id){var r=_gp.apply(this,arguments);try{if(id==='lab'){asvBuild();var s=document.getElementById('lab-sec-asv');if(s&&s.classList.contains('on'))asvRender();}}catch(e){lqSilent(e,'asvLab');}return r;};
+  var go=function(){var t=0,iv=setInterval(function(){t++;try{if(asvBuild()||t>30)clearInterval(iv);}catch(e){clearInterval(iv);}},500);};
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',go);else go();
+  setInterval(function(){try{asvCheckTests();}catch(e){lqSilent(e,'asvCheck');}},3600000);
+})();
+
+/* Decide si una regla aprobada bloquea una entrada ahora mismo. */
+function asvBlocked(botId,src){
+  var R=asvRules(),now=new Date(),h=now.getHours();
+  if(R.pausedBots[botId])return 'pausado por una regla aprobada';
+  var mot=src==='sched'?'horario':'tradicional',sym=(typeof SB!=='undefined'&&src==='sched')?SB.sym:(typeof currentSym!=='undefined'?currentSym:'');
+  for(var i=0;i<R.skip.length;i++){
+    var s=R.skip[i];
+    if(s.fam==='hour'&&String(s.key)===String(h))return 'franja de las '+h+':00 excluida por una regla aprobada';
+    if(s.fam==='motor'&&s.key===mot)return 'motor '+mot+' excluido por una regla aprobada';
+    if(s.fam==='sym'&&s.key===sym)return 'mercado '+sym+' excluido por una regla aprobada';
+    if(s.fam==='bot'&&s.key===botId)return 'bot excluido por una regla aprobada';
+  }
+  return '';
+}
+(function(){
+  var _pt=placeTrade;
+  placeTrade=function(sym,ctype,amt,dur,durU,sc){
+    var id=(sc&&sc.id)||currentStrat,why=asvBlocked(id,'main');
+    if(why){sbLog&&0;log('⏸ No entra: '+why,'w');return;}
+    return _pt.apply(this,arguments);
+  };
+  var _sp=sbPlace;
+  sbPlace=function(base,ct,ctype){
+    var why=asvBlocked(SB.bot,'sched');
+    if(why){sbNote('⏸ No entra: '+why);return;}
+    return _sp.apply(this,arguments);
+  };
+})();
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CENTRO DEL ASISTENTE · pantalla propia con resumen, análisis, propuestas,
+   práctica, control de operación y registro. Cada acción que mueve dinero real
+   pide confirmación. El asistente nunca abre ni cierra operaciones por su cuenta.
+   ═══════════════════════════════════════════════════════════════════════ */
+var C2={tab:'res'};
+function c2Money(x){return (x>=0?'+':'-')+'$'+Math.abs(x).toFixed(2);}
+function c2Col(x){return x>0?'var(--grn2)':x<0?'var(--red2)':'var(--t2)';}
+function c2Close(){var m=document.getElementById('c2-page');if(m)m.remove();}
+function c2Open(tab){
+  c2Close();
+  if(tab)C2.tab=tab;
+  var m=document.createElement('div');m.id='c2-page';
+  m.innerHTML='<div class="c2-top"><div class="c2-title">🧠 Centro del asistente</div><button type="button" class="c2-x" onclick="c2Close()" aria-label="Cerrar">✕</button></div>'
+   +'<div class="c2-tabs" role="tablist">'
+   +[['res','📊 Resumen'],['ana','🔍 Análisis'],['pro','💡 Propuestas'],['pra','🧪 Práctica'],['ope','🎮 Operar'],['log','📜 Decisiones']].map(function(t){return '<button type="button" role="tab" class="c2-tab'+(C2.tab===t[0]?' on':'')+'" onclick="c2Tab(\''+t[0]+'\')">'+t[1]+'</button>';}).join('')
+   +'</div><div id="c2-body" class="c2-body"></div>';
+  document.body.appendChild(m);c2Render();
+}
+function c2Tab(t){C2.tab=t;document.querySelectorAll('#c2-page .c2-tab').forEach(function(b,i){b.classList.toggle('on',['res','ana','pro','pra','ope','log'][i]===t);});c2Render();}
+function c2Render(){
+  var B=document.getElementById('c2-body');if(!B)return;
+  try{
+    var f={res:c2Res,ana:c2Ana,pro:c2Pro,pra:c2Pra,ope:c2Ope,log:c2Log}[C2.tab];B.innerHTML=f();
+  }catch(e){B.innerHTML='<div class="c2-card">No pude cargar esta sección: '+audEsc(e.message)+'</div>';lqSilent(e,'c2');}
+}
+/* 📊 Resumen */
+function c2Res(){
+  var ops=asvOps(),today=ops.filter(function(o){return o.at>=audDayStart(0);});
+  var pt=today.reduce(function(a,o){return a+(Number(o.profit)||0);},0),wt=today.filter(function(o){return o.res==='WIN';}).length;
+  var bots=allBots(),act=botOn?'<b style="color:var(--grn2)">ACTIVO</b> · '+audEsc((bots[currentStrat]||{}).name||currentStrat):'<b>detenido</b>';
+  var hz=(typeof SB!=='undefined'&&SB.on)?'<b style="color:var(--grn2)">ACTIVO</b>':(typeof SBX!=='undefined'&&SBX.enabled?'<b style="color:var(--gold2)">armado</b>':'<b>apagado</b>');
+  var why=''; try{why=sbWhy().text;}catch(e){lqSilent(e,'c2');}
+  var pend=ASV.list.filter(function(p){return p.state==='pendiente';}).length,prb=ASV.list.filter(function(p){return p.state==='probando';}).length,ap=ASV.list.filter(function(p){return p.state==='aplicada';}).length;
+  return '<div class="c2-grid">'
+   +'<div class="c2-kpi"><span>Hoy</span><b style="color:'+c2Col(pt)+'">'+c2Money(pt)+'</b><small>'+today.length+' ops · '+wt+' ganadas</small></div>'
+   +'<div class="c2-kpi"><span>Historial</span><b>'+ops.length+'</b><small>operaciones reales</small></div>'
+   +'<div class="c2-kpi"><span>Límite diario</span><b style="color:'+(dailyBlocked()?'var(--red2)':'var(--grn2)')+'">'+(dailyBlocked()?'alcanzado':'ok')+'</b><small>solo horario</small></div>'
+   +'<div class="c2-kpi"><span>Reglas</span><b>'+ap+'</b><small>aplicadas · '+(pend+prb)+' por revisar</small></div></div>'
+   +'<div class="c2-card"><div class="c2-h">Estado de los bots</div><div>🤖 Tradicional: '+act+'</div><div style="margin-top:6px;">⏰ Horario: '+hz+'</div><div class="c2-note">🩺 '+audEsc(why)+'</div></div>'
+   +'<div class="c2-card"><div class="c2-h">Qué hacer ahora</div>'+c2Next()+'</div>';
+}
+function c2Next(){
+  var ops=asvOps();
+  if(ops.length<ASV.min)return '<div class="c2-note">Faltan operaciones reales para analizar ('+ops.length+'/'+ASV.min+'). Opera en práctica o en DEMO para acumular datos.</div>';
+  var pend=ASV.list.filter(function(p){return p.state==='pendiente';});
+  if(pend.length)return '<div class="c2-note">Tienes '+pend.length+' propuesta(s) esperando tu decisión. Revísalas en 💡 Propuestas.</div>';
+  return '<div class="c2-note">Sin propuestas pendientes. Pulsa 🔍 Análisis para revisar el historial de nuevo.</div>';
+}
+/* 🔍 Análisis: tabla por bot */
+function c2Ana(){
+  var ops=asvOps();if(!ops.length)return '<div class="c2-card">Sin operaciones reales todavía.</div>';
+  var ids={};ops.forEach(function(o){ids[o.strat||'?']=1;});
+  var rows=Object.keys(ids).map(function(k){var g=ops.filter(function(o){return o.strat===k;}),E=asvEdgeOf(g);return {k:k,E:E,dd:LQS.drawdown(g),st:LQS.maxLossStreak(g)};}).sort(function(a,b){return b.E.pnl-a.E.pnl;});
+  var tr=rows.map(function(r){return '<tr><td>'+audEsc(LQS.botName(r.k))+'</td><td>'+r.E.n+'</td><td>'+LQS.pct(r.E.rate)+'</td><td>'+LQS.pct(r.E.be)+'</td><td style="color:'+c2Col(r.E.pnl)+'">'+c2Money(r.E.pnl)+'</td><td>'+r.st+'</td><td>'+audEsc(r.E.label)+'</td></tr>';}).join('');
+  var sp=asvSplit(ops);
+  return '<div class="c2-card"><div class="c2-h">Por bot · '+ops.length+' operaciones</div><div class="c2-tw"><table class="c2-tbl"><tr><th>Bot</th><th>Ops</th><th>Acierto</th><th>Equil.</th><th>P&L</th><th>Racha</th><th>Veredicto</th></tr>'+tr+'</table></div>'
+   +'<div class="c2-note">Muestra de entrenamiento: '+sp.train.length+' · validación (reciente): '+sp.valid.length+'. Solo se propone algo que se mantiene en la parte reciente.</div></div>'
+   +'<div class="c2-btns"><button type="button" class="c2-btn" onclick="asvPropose();c2Render();toast(\'Análisis actualizado\',\'info\',1800)">🔍 Volver a analizar</button></div>';
+}
+/* 💡 Propuestas (acciones reales con confirmación) */
+function c2Pro(){
+  var act=ASV.list.filter(function(p){return p.state==='pendiente'||p.state==='probando';});
+  if(!act.length)return '<div class="c2-card">Sin propuestas pendientes. Pulsa Análisis para buscar nuevas.</div>';
+  return act.map(function(p){
+    return '<div class="c2-card"><div class="c2-h">'+audEsc(p.title)+(p.state==='probando'?' <span class="asv-tag test">en práctica</span>':'')+'</div><div class="c2-note">'+audEsc(p.why)+'</div>'
+     +(p.testNote?'<div class="c2-note" style="color:var(--gold2)">Práctica: '+audEsc(p.testNote)+'</div>':'')
+     +'<div class="c2-btns">'+(p.state==='pendiente'?'<button type="button" class="c2-btn" onclick="asvStartTest(\''+p.id+'\');c2Render()">🧪 Probar 2 semanas</button>':'')
+     +'<button type="button" class="c2-btn red" onclick="c2ApplyConfirm(\''+p.id+'\')">✅ Aplicar</button><button type="button" class="c2-btn" onclick="asvDiscard(\''+p.id+'\');c2Render()">✖ Descartar</button></div></div>';
+  }).join('')+'<div class="c2-note">Aplicar pide tu confirmación. Las reglas aplicadas se pueden deshacer en 📜 Decisiones.</div>';
+}
+function c2ApplyConfirm(id){asvApply(id);c2Render();}
+/* 🧪 Práctica: estado del motor de práctica (sin dinero real) */
+function c2Pra(){
+  var L=(typeof PR!=='undefined'&&PR.list)?PR.list:[];
+  var h='<div class="c2-card"><div class="c2-h">Práctica (sin dinero real)</div><div class="c2-note">Las pruebas de las propuestas corren aquí. Puedes abrir el motor completo en Laboratorio → 🧪 Práctica.</div></div>';
+  if(!L.length)return h+'<div class="c2-card">No hay bots en práctica todavía.</div><div class="c2-btns"><button type="button" class="c2-btn" onclick="c2OpenLab(\'prac\')">Abrir Práctica</button></div>';
+  h+=L.slice(0,8).map(function(E){var n=E.n||0,pnl=+E.pnl||0;return '<div class="c2-card"><div class="c2-h">'+audEsc(E.name||E.id)+'</div><div>'+n+' ops · <b style="color:'+c2Col(pnl)+'">'+c2Money(pnl)+'</b> · acierto '+(n?Math.round((E.w||0)/n*100):0)+'%</div></div>';}).join('');
+  return h+'<div class="c2-btns"><button type="button" class="c2-btn" onclick="c2OpenLab(\'prac\')">Abrir Práctica completa</button></div>';
+}
+function c2OpenLab(tab){c2Close();goPage('lab');setTimeout(function(){try{labTab(tab);}catch(e){lqSilent(e,'c2');}},200);}
+/* 🎮 Operar: los dos motores por separado, con su estado, cifras y controles (cada acción real pide confirmación) */
+function c2Ope(){
+  var bots=allBots(),keys=Object.keys(bots);
+  var g=function(i,d){var e=document.getElementById(i);return e&&e.value!==undefined&&e.value!==''?e.value:d;};
+  var opts=function(sel){return keys.map(function(k){return '<option value="'+k+'"'+(k===sel?' selected':'')+'>'+audEsc(bots[k].name)+'</option>';}).join('');};
+  var t0=audDayStart(0),all=asvOps();
+  var mToday=all.filter(function(o){return o.src!=='sched'&&o.at>=t0;}),mPnl=mToday.reduce(function(s,o){return s+(Number(o.profit)||0);},0);
+  var sPnl=dailyPnl();
+  var mSt=botOn?'<span class="c2-pill on">ACTIVO</span>':'<span class="c2-pill">DETENIDO</span>';
+  var hSt=SB.on?'<span class="c2-pill on">ACTIVO</span>':(SBX.enabled?'<span class="c2-pill arm">ARMADO</span>':'<span class="c2-pill">APAGADO</span>');
+  var mBot=bots[currentStrat]||{},sBotId=g('sch-bot',currentStrat),sBot=bots[sBotId]||{};
+  var ml=typeof martinLevel==='number'?martinLevel:0,mx=(mBot.mrtMax||'sin tope');
+  var why='';try{why=sbWhy().text;}catch(e){lqSilent(e,'c2');}
+  var days=SCH_DAYLAB.map(function(x){var on=SBX.days[x[1]]!==false;return '<button type="button" class="c2-day'+(on?' on':'')+'" onclick="c2Day('+x[1]+')">'+x[0]+'</button>';}).join('');
+  var lim=dailyLimits();
+  return '<div class="c2-sec">🤖 Bot tradicional '+mSt+'</div>'
+   +'<div class="c2-card"><label class="c2-lb">Bot</label><select class="c2-sel" onchange="c2SetMain(this.value)">'+opts(currentStrat)+'</select>'
+   +'<div class="c2-grid2" style="margin-top:10px;">'
+   +'<div class="c2-mini"><span>Sesión</span><b style="color:'+c2Col(sessionPnL)+'">'+c2Money(sessionPnL)+'</b></div>'
+   +'<div class="c2-mini"><span>Hoy (tradicional)</span><b style="color:'+c2Col(mPnl)+'">'+c2Money(mPnl)+'</b></div>'
+   +'<div class="c2-mini"><span>Apuesta actual</span><b>$'+Number(sessionStake||0).toFixed(2)+'</b></div>'
+   +'<div class="c2-mini"><span>Martingala</span><b>nivel '+ml+' / '+mx+'</b></div>'
+   +'<div class="c2-mini"><span>Filtro</span><b>'+guardName(guardLevel('main'))+'</b></div>'
+   +'<div class="c2-mini"><span>Operaciones hoy</span><b>'+mToday.length+'</b></div></div>'
+   +'<div class="c2-btns"><button type="button" class="c2-btn" onclick="c2Start()">▶ Iniciar</button><button type="button" class="c2-btn" onclick="c2Stop()">⏹ Detener</button></div></div>'
+   +'<div class="c2-sec">⏰ Bot por horario '+hSt+'</div>'
+   +'<div class="c2-card"><label class="c2-lb">Bot del horario</label><select class="c2-sel" onchange="c2SetSch(this.value)">'+opts(sBotId)+'</select>'
+   +'<div class="c2-grid2" style="margin-top:10px;"><div><label class="c2-lb">Inicio</label><input id="c2-hs" class="c2-in" type="time" value="'+g('schedStart','09:00')+'" onchange="c2Sync()"></div>'
+   +'<div><label class="c2-lb">Fin</label><input id="c2-he" class="c2-in" type="time" value="'+g('schedEnd','17:00')+'" onchange="c2Sync()"></div>'
+   +'<div><label class="c2-lb">Stop Loss ($)</label><input id="c2-sl" class="c2-in" type="number" min="1" value="'+g('sch-sl',20)+'" onchange="c2Sync()"></div>'
+   +'<div><label class="c2-lb">Ganancia hoy</label><b class="c2-big" style="color:'+c2Col(sPnl)+'">'+c2Money(sPnl)+'</b></div></div>'
+   +'<label class="c2-lb" style="margin-top:10px;">Días activos</label><div class="c2-days">'+days+'</div>'
+   +'<div class="c2-note">🩺 '+audEsc(why)+'</div>'
+   +'<div class="c2-btns"><button type="button" class="c2-btn" onclick="c2Sched(true)">⏰ Activar</button><button type="button" class="c2-btn" onclick="c2Sched(false)">⏹ Apagar</button><button type="button" class="c2-btn" onclick="c2Pause()">'+(SBX.paused?'▶ Reanudar entradas':'⏸ Pausar entradas')+'</button></div></div>'
+   +'<div class="c2-sec">🛡 Seguridad</div>'
+   +'<div class="c2-card"><div class="c2-grid2">'
+   +'<div class="c2-mini"><span>Límite diario (horario)</span><b>-$'+lim.loss+'</b><small style="color:'+(dailyBlocked()?'var(--red2)':'var(--grn2)')+'">'+(dailyBlocked()?'alcanzado':'ok')+'</small></div>'
+   +'<div class="c2-mini"><span>Filtro de seguridad</span><b>'+(GCFG.on?'activo':'apagado')+'</b><small>'+GCFG.l1+' y '+GCFG.l2+' derrotas</small></div></div>'
+   +'<div class="c2-btns"><button type="button" class="c2-btn" onclick="c2Filter()">'+(GCFG.on?'Apagar filtro':'Activar filtro')+'</button></div></div>'
+   +'<div class="c2-card red"><div class="c2-h">Emergencia</div><div class="c2-note">Detiene el bot tradicional y el horario de inmediato.</div><div class="c2-btns"><button type="button" class="c2-btn red" onclick="c2Panic()">🛑 Detener todo</button></div></div>';
+}
+function c2SetMain(id){
+  if(botOn){toast('Detén el bot tradicional antes de cambiarlo','warn',2600);c2Render();return;}
+  currentStrat=id;try{schSaveCfg();}catch(e){}c2Render();
+}
+function c2SetSch(id){
+  if(SB.on){toast('Detén el horario antes de cambiar su bot','warn',2600);c2Render();return;}
+  var s=document.getElementById('sch-bot');if(s){s.value=id;}SBX.picked=id;try{schSaveCfg();}catch(e){}c2Render();
+}
+function c2Sync(){
+  var set=function(i,v){var e=document.getElementById(i);if(e)e.value=v;};
+  var hs=(document.getElementById('c2-hs')||{}).value,he=(document.getElementById('c2-he')||{}).value,sl=(document.getElementById('c2-sl')||{}).value;
+  if(hs)set('schedStart',hs);if(he)set('schedEnd',he);if(sl)set('sch-sl',Math.max(1,Math.round(+sl)||20));
+  try{schSaveCfg();}catch(e){lqSilent(e,'c2');}toast('Horario guardado','info',1500);c2Render();
+}
+function c2Day(d){try{schDayToggle(d);}catch(e){lqSilent(e,'c2');}c2Render();}
+function c2Filter(){
+  var on=!GCFG.on;
+  if(!on&&!confirm('¿Apagar el filtro de seguridad? Los bots dejarán de frenarse tras rachas de derrotas.'))return;
+  try{guardToggle(on);}catch(e){lqSilent(e,'c2');}c2Render();
+}
+function c2Start(){
+  var id=(document.getElementById('c2-bot')||{}).value;if(!id)return;
+  if(botOn){toast('El bot tradicional ya está activo','info',2000);return;}
+  if(!confirm('¿Iniciar el bot tradicional «'+LQS.botName(id)+'» con dinero real? Revisa que estés en la cuenta correcta.'))return;
+  currentStrat=id;try{startBot();}catch(e){lqSilent(e,'c2');}c2Render();
+}
+function c2Stop(){if(!botOn){toast('El bot tradicional ya está detenido','info',2000);return;}if(!confirm('¿Detener el bot tradicional?'))return;try{stopBot();}catch(e){lqSilent(e,'c2');}c2Render();}
+function c2Sched(on){
+  if(on&&!confirm('¿Activar el horario? Operará dentro de su ventana con dinero real.'))return;
+  if(!on&&!confirm('¿Apagar el horario? Si hay una operación abierta, sigue su curso.'))return;
+  try{setSched(on);}catch(e){lqSilent(e,'c2');}c2Render();
+}
+function c2Pause(){try{schPauseToggle();}catch(e){lqSilent(e,'c2');}c2Render();}
+function c2Panic(){if(!confirm('¿Detener TODO ahora (bot tradicional y horario)?'))return;try{panicStop();}catch(e){lqSilent(e,'c2');}c2Render();}
+/* 📜 Decisiones: registro + deshacer */
+function c2Log(){
+  var ap=ASV.list.filter(function(p){return p.state==='aplicada';});
+  var h='<div class="c2-card"><div class="c2-h">Reglas aplicadas</div>'+(ap.length?ap.map(function(p){return '<div class="c2-row"><span>'+audEsc(p.title)+'</span><button type="button" class="c2-btn" onclick="asvUndo(\''+p.id+'\');c2Render()">↩ Deshacer</button></div>';}).join(''):'<div class="c2-note">Ninguna regla aplicada.</div>')+'</div>';
+  var lg=ASV.log.slice(-60).reverse();
+  return h+'<div class="c2-card"><div class="c2-h">Registro</div>'+(lg.length?lg.map(function(x){return '<div class="c2-lg"><span>'+audAgo(x.t)+'</span> '+audEsc(x.m)+'</div>';}).join(''):'<div class="c2-note">Sin decisiones registradas.</div>')+'</div>';
+}
+/* Acceso: menú «Más» y barra inferior. Sustituye al acceso anterior del asistente. */
+function c2Build(){
+  var a=document.querySelector('.mm-item[onclick*="goPage(\'lab\')"]');
+  if(a&&!document.getElementById('mm-c2')){var c=a.cloneNode(true);c.id='mm-c2';c.setAttribute('onclick',"closeMore();c2Open('res');");var ic=c.querySelector('.mm-ic'),t=c.querySelector('.mm-t');if(ic)ic.textContent='🧠';if(t){if(t.firstChild&&t.firstChild.nodeType===3)t.firstChild.textContent='Centro del asistente';else t.textContent='Centro del asistente';var sm=c.querySelector('.mm-sub');if(sm)sm.textContent='Resumen, análisis, propuestas, práctica y control';}a.parentNode.insertBefore(c,a.nextSibling);}
+  var mm=document.getElementById('mm-asv');if(mm)mm.setAttribute('onclick',"closeMore();c2Open('pro');");
+  return !!document.getElementById('mm-c2');
+}
+(function(){
+  var go=function(){var t=0,iv=setInterval(function(){t++;try{if(c2Build()||t>40)clearInterval(iv);}catch(e){clearInterval(iv);}},500);};
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',go);else go();
+})();
+
+(function(){
+  var _gp=goPage;
+  goPage=function(id){
+    if(id==='chat')id='bots';
+    var r=_gp.call(this,id);
+    if(id==='bots'){setTimeout(function(){try{if(typeof refreshPanel==='function')refreshPanel();}catch(e){lqSilent(e,'ptRefresh');}},80);}
+    return r;
+  };
+  function unify(){
+    var pb=document.getElementById('pg-bots'),pc=document.getElementById('pg-chat');
+    if(!pb||!pc)return false;
+    if(pb.getAttribute('data-unified')!=='1'){
+      var pbi=pb.querySelector('.pgi'),pci=pc.querySelector('.pgi');
+      if(pbi&&pci){
+        var wrap=document.createElement('div');wrap.className='pt-panel';wrap.id='pt-panel';
+        while(pci.firstChild)wrap.appendChild(pci.firstChild);
+        var sep=document.createElement('div');sep.className='pt-sep';sep.innerHTML='<span>🤖 Mis bots</span>';
+        pbi.insertBefore(wrap,pbi.firstChild);pbi.insertBefore(sep,wrap.nextSibling);
+      }
+      pc.className='';pc.style.display='none';pc.innerHTML='';
+      pb.setAttribute('data-unified','1');
+    }
+    var more=document.getElementById('more-menu')||document;
+    more.querySelectorAll('.mm-item').forEach(function(x){var oc=x.getAttribute('onclick')||'';if(/goPage\('bots'\)/.test(oc)&&!/closeMore\(\);goPage\('bots'\)/.test('closeMore();goPage(\'bots\)')===false){}if(oc.indexOf("goPage('bots')")>=0)x.remove();});
+    return true;
+  }
+  var go=function(){var t=0,iv=setInterval(function(){t++;try{if(unify()||t>40)clearInterval(iv);}catch(e){clearInterval(iv);}},300);};
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',go);else go();
+})();
+
+/* ═══════════════════════════════════════════════════════════════════════
+   GUÍA DE USO COMPLETA · índice, búsqueda y secciones didácticas
+   ═══════════════════════════════════════════════════════════════════════ */
+var GUIDE=[
+{id:'intro',ico:'🐺',t:'1. Qué es LOBO QUANTUM',h:`
+<p>LOBO QUANTUM (LYCAN) es una terminal para operar con <b>bots automáticos</b> en tu cuenta de <b>Deriv</b>. Un bot es un programa que mira el mercado, decide cuándo entrar y compra contratos por ti, siguiendo reglas que tú eliges o que ya vienen preparadas.</p>
+<p>La app hace cuatro cosas principales:</p>
+<ul><li><b>Opera</b> con uno o dos motores: el <b>bot tradicional</b> (lo inicias tú) y el <b>bot por horario</b> (opera solo dentro de una ventana de horas).</li>
+<li><b>Te protege</b> con límites: Stop Loss, meta, límite diario, filtro de seguridad y botón de pánico.</li>
+<li><b>Te enseña</b> con el Laboratorio, la práctica sin dinero, el informe de sesión y el asistente, que analiza tu historial.</li>
+<li><b>Te avisa</b> con notificaciones en el celular y guarda una copia de tus datos en la nube.</li></ul>
+<div class="gd-warn"><b>Importante:</b> operar con bots implica riesgo de perder dinero. Ningún bot gana siempre. La app no garantiza ganancias. Empieza siempre en <b>DEMO</b> (dinero ficticio) hasta que entiendas cada herramienta y tengas datos suficientes.</div>
+<h3>Cómo usar esta guía</h3><p>Lee las secciones en orden la primera vez. Después úsala como consulta: escribe una palabra en el buscador de arriba (por ejemplo <i>martingala</i>, <i>horario</i> o <i>token</i>) y verás solo las secciones relacionadas.</p>`},
+
+{id:'primeros',ico:'🚀',t:'2. Primeros pasos',h:`
+<h3>Paso 1 · Entrar a la app</h3>
+<ol><li>Abre la dirección de la app (o la app instalada en tu teléfono).</li>
+<li>Escribe tu <b>correo</b> y tu <b>clave</b>. Si no tienes cuenta, usa <b>Registrarse</b> con tu nombre, correo y clave.</li>
+<li>Si olvidaste la clave, toca <b>Olvidé mi contraseña</b>: se te pedirá la respuesta de tu pregunta de seguridad.</li></ol>
+<div class="gd-tip">La pregunta de seguridad se configura en el panel de administrador. Si no tienes pregunta configurada, pide al administrador que restablezca tu clave.</div>
+<h3>Paso 2 · Conocer la pantalla</h3>
+<p>En el teléfono verás una barra inferior con cinco zonas:</p>
+<ul><li><b>🏠 Inicio:</b> la terminal con el precio en vivo, la gráfica y el estado del bot.</li>
+<li><b>📊 Panel T:</b> tu resumen de sesión arriba y, debajo, tus bots (crear, editar, iniciar).</li>
+<li><b>🔗 Conectar:</b> donde pegas tu token de Deriv y eliges Real o Demo.</li>
+<li><b>⏰ Horario:</b> configuración y estado del bot por horario.</li>
+<li><b>··· Más:</b> el resto de herramientas: Laboratorio, Centro del asistente, Informe, Calculadora, Avisos, Copia de seguridad, Ayuda y más.</li></ul>
+<p>En computadora aparece una barra superior con las mismas herramientas y el botón <b>☰ Config</b>.</p>
+<h3>Paso 3 · Instalar la app (recomendado)</h3>
+<p>Instalada, la app se abre como una aplicación más, con su propio icono. En Android toca <b>Instalar</b> (en el menú Más) o el menú del navegador → <i>Instalar app</i>. En iPhone: Compartir → <i>Añadir a pantalla de inicio</i>.</p>`},
+
+{id:'token',ico:'🔗',t:'3. Conectar con Deriv (token)',h:`
+<p>Para que la app opere en tu cuenta necesita un <b>token de API</b> de Deriv. Es como una llave que permite a la app comprar y vender contratos, así que trátalo con cuidado.</p>
+<h3>Cómo crear el token</h3>
+<ol><li>Entra a <b>developers.deriv.com</b> con tu cuenta de Deriv.</li>
+<li>Ve a <b>API tokens</b> (Tokens de API).</li>
+<li>Crea un token nuevo con el permiso <b>trade</b> (negociar). No necesitas permisos de retiro: no los marques.</li>
+<li>Copia el token. Empieza por <code>pat_</code>.</li></ol>
+<h3>Cómo conectar en la app</h3>
+<ol><li>Toca <b>🔗 Conectar</b>.</li>
+<li>Elige <b>🟢 Demo</b> si quieres practicar con dinero ficticio, o <b>🔴 Real</b> para tu dinero real.</li>
+<li>Pega el token en el campo <i>Token de API Deriv</i>.</li>
+<li>Toca <b>Conectar</b>. Cuando el estado diga <b>CONECTADO</b> y aparezca tu saldo, estás listo.</li></ol>
+<h3>Recordar el token en este dispositivo</h3>
+<p>Debajo del campo hay una casilla: <i>Recordar token en este dispositivo (cifrado)</i>. Si la activas, la app guarda el token cifrado en el dispositivo y puede reconectarse sola si el sistema la cierra. Se borra al tocar <b>Desconectar</b>.</p>
+<div class="gd-warn"><b>Nunca</b> compartas tu token, no lo pegues en chats ni en capturas de pantalla, y no lo guardes dentro de documentos o repositorios públicos. Si crees que se filtró, revócalo en developers.deriv.com y crea uno nuevo.</div>
+<h3>Demo o Real: ¿cuál uso?</h3>
+<p>Usa <b>Demo</b> para aprender: los bots operan igual, pero con dinero ficticio. Cambia a <b>Real</b> solo cuando tengas claro cuánto arriesgas por operación, qué pasa si pierdes varias seguidas y tengas un Stop Loss configurado.</p>`},
+
+{id:'inicio',ico:'🏠',t:'4. La pantalla Inicio (terminal)',h:`
+<p>Es la pantalla de trabajo principal. De arriba abajo verás:</p>
+<ul><li><b>Precio:</b> el último precio del mercado que estás mirando.</li>
+<li><b>Mercado:</b> el selector (por ejemplo <i>Vol 10 (1s)</i>). Elige el índice sobre el que opera el bot tradicional.</li>
+<li><b>Gráfica:</b> en <i>Línea</i>, <i>Área</i> o <i>P&amp;L</i> (tu ganancia en el tiempo).</li>
+<li><b>Dígitos:</b> porcentaje de veces que ha salido cada último dígito recientemente. Algunos bots se basan en esto.</li>
+<li><b>Estado del bot:</b> <b>ACTIVO</b> o <b>INACTIVO</b>, con el nombre del bot elegido y su situación actual.</li>
+<li><b>P&amp;L de sesión:</b> ganancia o pérdida de la sesión actual, con su barra de Stop Loss y meta.</li>
+<li><b>Operaciones:</b> la lista de las últimas operaciones (ganadas en verde, perdidas en rojo).</li></ul>
+<div class="gd-tip">Si la pantalla dice <b>DESCONECTADO</b>, no hay operaciones posibles. Ve a <b>Conectar</b> y revisa el token y la conexión.</div>`},
+
+{id:'bots',ico:'🤖',t:'5. Bots: qué son y cómo elegir uno',h:`
+<p>Un bot es una <b>estrategia automatizada</b>: define <i>cuándo</i> entrar (una señal), <i>qué</i> comprar (tipo de contrato) y <i>cuánto</i> apostar (apuesta y martingala).</p>
+<h3>Bots que ya vienen con la app</h3>
+<p>LOBO BASTIÓN PRO, LOBO SUPREMO, LOBO ALFA, LOBO CAZADOR y LOBO ÉLITE. Cada uno tiene su propia lógica. Ninguno es mejor en todos los mercados: el resultado depende del mercado, la hora y la suerte de cada sesión. Por eso la app mide cada uno con sus datos.</p>
+<h3>Niveles de riesgo</h3>
+<p>Cada bot tiene un nivel visible en su tarjeta:</p>
+<ul><li><b>👑 Principal (muy bueno):</b> los bots que tú marcas como principales (hasta 5).</li>
+<li><b>🟢 Bueno:</b> ventaja probable frente al punto de equilibrio del pago.</li>
+<li><b>🟡 Regular:</b> sin evidencia clara, o con buen acierto pero con pérdidas recientes o rachas largas.</li>
+<li><b>🔴 Malo:</b> con datos suficientes, pierde a largo plazo.</li>
+<li><b>🔵 Sin determinar:</b> menos de 30 operaciones. Todavía no hay datos para juzgarlo.</li></ul>
+<p>Puedes <b>cambiar el nivel</b> tocando la insignia del bot. Si lo cambias a mano, la app lo respeta y muestra también lo que calcula el sistema, para que decidas tú.</p>
+<h3>Cómo elegir un bot (paso a paso)</h3>
+<ol><li>Mira su nivel y sus datos en <b>📊 Panel T</b> (acierto, ganancia, racha).</li>
+<li>Empieza con uno en 🔵 o 🟡 en <b>Demo</b>, no con el de mejor número del momento.</li>
+<li>Espera al menos 30 operaciones antes de confiar en el resultado.</li>
+<li>Revisa el <b>Informe</b> y el <b>Laboratorio → Comparar</b> para ver cuál rinde mejor con tus datos.</li></ol>
+<div class="gd-warn">Un bot que gana mucho en pocas operaciones puede estar teniendo suerte. Un bot que pierde unas cuantas seguidas no necesariamente está roto. Los números pequeños engañan.</div>`},
+
+{id:'constructor',ico:'🛠️',t:'6. Crear y editar tu propio bot',h:`
+<p>Puedes crear bots propios desde <b>📊 Panel T → + Nuevo</b>. El constructor te guía con estos campos:</p>
+<ul><li><b>Nombre e icono:</b> para reconocerlo en la lista.</li>
+<li><b>Mercado:</b> el índice o activo sobre el que opera.</li>
+<li><b>Tipo de contrato:</b> por ejemplo Par/Impar, Sube/Baja, Dígitos, Rango, Multiplicadores o Acumuladores. Cada tipo tiene reglas diferentes (duración, barrera). Si el tipo no tiene duración fija, el bot por horario no lo acepta.</li>
+<li><b>Lógica:</b> cómo decide la entrada (tendencia, racha, enfriamiento, etc.).</li>
+<li><b>Apuesta inicial:</b> cuánto arriesgas en la primera operación. El mínimo es <b>$0.35</b>.</li>
+<li><b>Martingala:</b> cuánto multiplica la apuesta después de una pérdida (ver sección 7).</li>
+<li><b>Nivel máximo de martingala:</b> cuántas veces seguidas puede multiplicar antes de volver a la apuesta inicial. <b>Muy recomendable</b> ponerlo.</li>
+<li><b>Stop Loss y meta del bot:</b> pérdida máxima y ganancia objetivo para esa sesión.</li></ul>
+<h3>Editar y mantener tus bots</h3>
+<p>En la tarjeta de cada bot tienes: <b>▶ Iniciar</b>, <b>✎ Editar parámetros</b>, <b>👑 Establecer como principal</b>, <b>🔄 Limpiar estadísticas</b> (borra el acumulado del bot, no el historial) y <b>🗑 Eliminar</b>. Los bots que creas se guardan en tu dispositivo y se incluyen en la copia de la nube.</p>
+<div class="gd-tip">Para probar una variante sin perder el original: crea un bot nuevo con los mismos valores, cambia solo una cosa y compáralos en Laboratorio → Comparar. Si cambias varias cosas a la vez, no sabrás cuál causó el resultado. El Generador del Laboratorio también crea variantes.</div>`},
+
+{id:'panelt',ico:'📊',t:'7. Panel T: tu centro de control',h:`
+<p><b>Panel T</b> reúne en una sola pantalla lo que necesitas para decidir:</p>
+<ul><li><b>Arriba (el panel):</b> estado de conexión, saldo, Stop Loss y meta, estadísticas de la sesión (operaciones, ganadas, perdidas, racha, martingala, caída máxima) y las últimas operaciones.</li>
+<li><b>Debajo ("Mis bots"):</b> la lista de tus bots con su nivel, su rendimiento y sus botones: <b>▶ Iniciar</b>, <b>✎ Editar</b>, <b>👑</b> para marcarlo como principal, <b>🔄</b> para limpiar sus estadísticas y <b>🗑</b> para eliminarlo. Toca la insignia de nivel para cambiarlo.</li></ul>
+<h3>Iniciar un bot desde Panel T</h3>
+<ol><li>Verifica que estés conectado (Inicio debe decir CONECTADO).</li>
+<li>Elige el bot y toca <b>▶ Iniciar</b>.</li>
+<li>La tarjeta del bot se marca como activa y el estado cambia a <b>ACTIVO</b>.</li>
+<li>Para detenerlo, toca el mismo botón (<b>⏹</b>) o usa <b>🛑 Detener</b> en el panel.</li></ol>
+<div class="gd-tip">Desplázate hacia abajo en Panel T para ver todos los bots. Los bots ocultos para usuarios solo los cambia el administrador desde Laboratorio → Permisos.</div>`},
+
+{id:'martingala',ico:'📈',t:'8. Martingala: qué es y cómo funciona',h:`
+<p>La <b>martingala</b> es una regla de apuesta: después de cada pérdida, la siguiente apuesta se multiplica por un factor. El objetivo es que una sola victoria recupere todo lo perdido. El problema es que el dinero crece muy rápido.</p>
+<h3>Ejemplo con factor ×2.1 y apuesta inicial $0.35</h3>
+<table class="gd-tbl"><tr><th>Derrota seguida</th><th>Apuesta</th><th>Acumulado perdido</th></tr>
+<tr><td>0 (inicio)</td><td>$0.35</td><td>$0.00</td></tr>
+<tr><td>1</td><td>$0.73</td><td>$0.35</td></tr>
+<tr><td>2</td><td>$1.53</td><td>$1.08</td></tr>
+<tr><td>3</td><td>$3.21</td><td>$2.61</td></tr>
+<tr><td>4</td><td>$6.74</td><td>$5.82</td></tr>
+<tr><td>5</td><td>$14.15</td><td>$12.56</td></tr>
+<tr><td>6</td><td>$29.72</td><td>$26.71</td></tr></table>
+<p>Fíjate: a la sexta derrota seguida ya arriesgas casi $30 para intentar recuperar. Por eso existen tres protecciones: el <b>nivel máximo de martingala</b> (vuelve a la apuesta inicial), el <b>Stop Loss</b> y el <b>filtro de seguridad</b>.</p>
+<div class="gd-warn">Con martingala, muchas pérdidas seguidas pueden agotar tu saldo en pocos minutos. Antes de usarla en Real, calcula cuánto dinero necesitas para aguantar 6 u 8 derrotas seguidas (Calculadora de riesgo) y asegúrate de tener ese monto disponible.</div>`},
+
+{id:'limites',ico:'🛑',t:'9. Stop Loss, meta y límite diario',h:`
+<p>Son los <b>frenos</b> de la app. Conviene entender cada uno:</p>
+<ul><li><b>Stop Loss (SL):</b> la pérdida máxima de la sesión. Si la ganancia llega a −SL, el bot se detiene. Ejemplo: SL $20 = el bot se para al perder $20 en la sesión.</li>
+<li><b>Meta (TP):</b> la ganancia objetivo de la sesión. Al alcanzarla, el bot tradicional se detiene (así no devuelves lo ganado).</li>
+<li><b>Límite diario (solo horario):</b> la pérdida máxima del día para el bot por horario. Al alcanzarla, el horario se detiene hasta el día siguiente. No afecta al bot tradicional.</li>
+<li><b>Nivel máximo de martingala:</b> no es un freno de pérdida, sino un límite de cuántas veces se multiplica la apuesta.</li></ul>
+<h3>Cómo cambiarlos</h3>
+<p>El Stop Loss y la meta del bot tradicional están en la barra del panel (Inicio y Panel T). Los del horario se cambian en <b>⏰ Horario</b>. El límite diario se ajusta en la sección <b>Límite del día</b> del horario.</p>
+<div class="gd-tip">Define el SL antes de iniciar, no durante. Un SL muy alto es una protección que no protege: si el SL es mayor que lo que puedes perder, no sirve de freno.</div>`},
+
+{id:'filtro',ico:'🛡️',t:'10. Filtro de seguridad',h:`
+<p>El filtro observa las <b>rachas de derrotas</b> de cada motor (tradicional y horario, por separado) y reacciona:</p>
+<ul><li><b>3 derrotas seguidas → modo consciente:</b> pausa de 20 segundos antes de la siguiente entrada, exige una señal algo más fuerte y la confirma dos veces.</li>
+<li><b>6 derrotas seguidas → modo estricto:</b> pausa de 60 segundos, exige señales más fuertes y confirma tres veces.</li>
+<li><b>Una victoria</b> vuelve el motor a modo normal.</li></ul>
+<h3>Cómo configurarlo</h3>
+<p>En <b>⏰ Horario → Filtro de seguridad</b> puedes activarlo o apagarlo y, en <b>Ajustar umbrales</b>, cambiar cuántas derrotas activan cada modo, las pausas y las confirmaciones. Puedes elegir si aplica al tradicional, al horario o a ambos.</p>
+<div class="gd-warn">El filtro reduce entradas en mala racha, pero no garantiza no perder. Tampoco evita que la martingala suba si el nivel no está limitado.</div>`},
+
+{id:'horario',ico:'⏰',t:'11. Bot por horario, paso a paso',h:`
+<p>El bot por horario opera <b>solo dentro de la ventana de horas</b> que tú defines, sin que estés pendiente. Corre <b>aparte</b> del bot tradicional: tienen sus propias cuentas, apuestas y ganancias.</p>
+<h3>Configuración</h3>
+<ol><li><b>Ventana:</b> hora de inicio y hora de fin (por ejemplo 09:00 a 17:00). Si el fin es menor que el inicio, la ventana cruza la medianoche (por ejemplo 22:00 a 06:00).</li>
+<li><b>Días activos:</b> toca L M X J V S D para elegir en qué días opera. Debe quedar al menos un día activo.</li>
+<li><b>Bot del horario:</b> cuál bot usa.</li>
+<li><b>Stop Loss del horario:</b> la pérdida máxima de cada sesión del horario.</li>
+<li><b>Límite diario:</b> la pérdida máxima del día para el horario.</li></ol>
+<h3>Activar y apagar</h3>
+<p>Toca <b>Activar</b>. El horario queda <i>armado</i>: espera su ventana y arranca solo. Verás una cuenta regresiva (<i>empieza en 2h 10m</i>). Para detenerlo, toca <b>Apagar</b>.</p>
+<h3>Cuándo se detiene solo</h3>
+<ul><li>Al llegar a la hora de fin.</li><li>Al alcanzar el Stop Loss de la sesión.</li><li>Al alcanzar el límite diario.</li><li>Si lo apagas tú.</li><li>Si se cae la conexión con Deriv y no se puede reconectar.</li></ul>
+<h3>Pausar entradas</h3>
+<p>Con <b>Pausar entradas</b> el horario deja de tomar operaciones nuevas, pero lo que ya está abierto sigue su curso. Es útil si quieres observar sin cerrar la sesión.</p>
+<h3>El diagnóstico</h3>
+<p>En la pantalla verás una frase que explica el estado exacto, por ejemplo <i>Esperando su ventana</i>, <i>Filtro de seguridad: pensando 40 s</i> o <i>Sin ticks del mercado hace 70 s</i>. Léela antes de preguntarte por qué no opera.</p>
+<div class="gd-warn">La app debe estar abierta para que el horario opere. Si el teléfono bloquea la pantalla o cambias de app, el sistema puede pausarla. Mira la sección 13 para reducir ese riesgo.</div>`},
+
+{id:'avisos',ico:'🔔',t:'12. Avisos y segundo plano',h:`
+<p>Puedes recibir notificaciones en el celular cuando ocurren cosas importantes, aunque no tengas la app a la vista.</p>
+<h3>Activar los avisos</h3>
+<ol><li>Ve a <b>Más → 🔔 Avisos y segundo plano</b>.</li>
+<li>Toca <b>Permitir avisos</b> y acepta en el navegador o sistema.</li>
+<li>Elige qué quieres recibir: resultado de cada operación, inicio y fin del horario, aviso antes de que empiece el horario, caídas de conexión, metas y límites.</li>
+<li>Usa <b>Enviar aviso de prueba</b> para comprobar que llegan.</li></ol>
+<h3>Modo segundo plano</h3>
+<p>Cuando un bot opera, la app puede mantener la pantalla encendida y reproducir un audio inaudible para que el sistema no la pause al cambiar de aplicación. Puede pausar tu música. Puedes apagarlo en el mismo panel.</p>
+<h3>Límites reales</h3>
+<p>Una app web no puede operar con el teléfono apagado ni con la app cerrada. Para operar con el teléfono bloqueado de forma estable se necesitaría un servidor, que no está incluido. Recomendación: instala la app, conecta el cargador y deja el teléfono con pantalla encendida cuando operes.</p>`},
+
+{id:'lab',ico:'🧪',t:'13. Laboratorio: aprender y validar',h:`
+<p>El Laboratorio es donde estudias tus bots antes y después de usarlos. Tiene pestañas:</p>
+<ul><li><b>🧠 Aprendizaje:</b> guarda los últimos 20 resultados de cada bot y calcula una lectura rápida. Es información, no cambia nada solo.</li>
+<li><b>📋 Historial:</b> todas tus operaciones, con filtros por bot, motor, hora y mercado.</li>
+<li><b>🧬 Generador:</b> crea variantes de un bot para probarlas.</li>
+<li><b>🔬 Backtest:</b> simula un bot con datos pasados. Úsalo con cuidado: el pasado no garantiza el futuro.</li>
+<li><b>🚦 Validación:</b> un semáforo (verde, amarillo, rojo) con la muestra, la ventaja, la caída y la racha.</li>
+<li><b>⚖️ Comparar:</b> pone 2 o más bots frente a frente con un puntaje: ventaja estadística, rentabilidad, caída, racha, constancia y cantidad de operaciones.</li>
+<li><b>🧪 Práctica:</b> prueba bots sin dinero real con datos del mercado en vivo.</li>
+<li><b>🐺 Permisos:</b> gestiona los rangos de los usuarios (Cachorro, Lobo Junior… Lobo Alfa) y la visibilidad de los bots. Es una función del administrador.</li></ul>
+<div class="gd-tip">Flujo recomendado: Comparar → Validación → Práctica (2 semanas) → Demo → Real con una apuesta pequeña.</div>`},
+
+{id:'asistente',ico:'🧠',t:'14. Centro del asistente',h:`
+<p>El <b>Centro del asistente</b> (en <b>Más</b>) es el lugar donde analizas, decides y operas. Tiene seis pestañas:</p>
+<ul><li><b>📊 Resumen:</b> ganancia de hoy, historial, límite diario, reglas aplicadas y estado de ambos bots.</li>
+<li><b>🔍 Análisis:</b> tabla por bot con acierto, equilibrio del pago, ganancia, racha y veredicto.</li>
+<li><b>💡 Propuestas:</b> cambios que el asistente sugiere, con su evidencia. Cada propuesta se puede <i>probar 2 semanas en práctica</i>, <i>aplicar</i> o <i>descartar</i>.</li>
+<li><b>🧪 Práctica:</b> resumen de las pruebas sin dinero real.</li>
+<li><b>🎮 Operar:</b> control de los dos motores: iniciar y detener el bot tradicional, activar el horario, cambiar su ventana, sus días y su Stop Loss, pausar entradas, activar o desactivar el filtro y detener todo.</li>
+<li><b>📜 Decisiones:</b> registro de cada decisión y de las reglas aplicadas, con opción de deshacerlas.</li></ul>
+<h3>Qué NO hace</h3>
+<p>El asistente nunca aplica un cambio solo. Cada regla exige tu confirmación, y cada acción que mueve dinero real pide confirmación. Solo analiza datos reales: con menos de 30 operaciones no propone nada.</p>
+<div class="gd-warn">Una propuesta validada tampoco garantiza mejores resultados. Es una hipótesis con evidencia. Pruébala antes de aplicarla y revisa su resultado.</div>`},
+
+{id:'lycanai',ico:'🔎',t:'15. LYCAN AI: escáner y recomendaciones',h:`
+<p>LYCAN AI analiza tus bots con sus resultados y te muestra en pestañas:</p>
+<ul><li><b>Ventaja:</b> cuánto supera cada bot el punto de equilibrio.</li>
+<li><b>Horas:</b> en qué franjas del día gana o pierde.</li>
+<li><b>Mercados:</b> cómo rinde cada índice.</li>
+<li><b>Alertas:</b> bots que empeoran de forma clara.</li>
+<li><b>Rango:</b> ordena los bots por su rendimiento.</li>
+<li><b>Informe:</b> un resumen para leer con calma.</li></ul>
+<p>Pulsa <b>Analizar bots</b> para actualizar. La app no cambia parámetros automáticamente: te ofrece el análisis y tú decides.</p>`},
+
+{id:'informe',ico:'📋',t:'16. Informe de sesión: cómo leerlo',h:`
+<p>El Informe resume la sesión actual. Arriba verás indicadores (operaciones, tasa de éxito, ganancia neta, caída máxima, rachas) y, en la parte de <b>Efectividad y peligro</b>, cuatro porcentajes:</p>
+<ul><li><b>🎯 Efectividad:</b> porcentaje de operaciones ganadas. Lo importante es compararlo con el <b>equilibrio</b> del pago: si el equilibrio es 51 % y tu efectividad es 48 %, estás perdiendo aunque ganes algunas veces.</li>
+<li><b>⚠️ Peligro:</b> una estimación de riesgo (0 a 100 %). Mezcla qué tan cerca estás del Stop Loss (40 %), tu peor racha (25 %), el nivel de martingala (20 %) y tu racha actual (15 %). Es una guía, no una predicción.</li>
+<li><b>🛑 Stop Loss usado:</b> cuánto del Stop Loss ya consumiste.</li>
+<li><b>🏁 Avance a la meta:</b> cuánto falta para la ganancia objetivo.</li></ul>
+<div class="gd-tip">Si la efectividad es alta pero el peligro también, ganas poco a menudo con pérdidas grandes. Revisa la martingala antes de seguir.</div>`},
+
+{id:'calc',ico:'🧮',t:'17. Calculadora de riesgo',h:`
+<p>Antes de operar en Real, usa la <b>Calculadora de riesgo</b> (en Más). Te muestra cuánto dinero necesitas para aguantar una racha de pérdidas con tu apuesta inicial y tu factor de martingala, y qué porcentaje de tu saldo representa cada nivel.</p>
+<p>Regla práctica: no arriesgues en una sola sesión más de lo que estarías dispuesto a perder sin cambiar tu vida. Si la calculadora dice que necesitas $200 para aguantar 6 derrotas y tu saldo es $150, no operes ese bot en Real.</p>`},
+
+{id:'nube',ico:'☁️',t:'18. Respaldo en la nube',h:`
+<p>Tus datos (bots, historial, configuración, cuentas) se guardan en el navegador de tu dispositivo. Si borras los datos del navegador o cambias de dispositivo, se pierden. Para evitarlo, la app puede guardar una copia en tu <b>GitHub</b> o tu <b>Google Drive</b>.</p>
+<h3>Con GitHub (recomendado)</h3>
+<ol><li>Crea un repositorio <b>privado</b> vacío en GitHub.</li>
+<li>Crea un token de tipo <i>Fine-grained</i> que solo tenga acceso a ese repositorio y permiso <b>Contents: Read and write</b>.</li>
+<li>En el panel de administrador, sección <b>☁️ Respaldo en la nube</b>, pega el token y escribe <i>usuario/repositorio</i>.</li>
+<li>Pulsa <b>Probar conexión</b> y luego <b>Subir ahora</b>.</li></ol>
+<h3>Cifrado y versiones</h3>
+<p>Puedes poner una <b>clave de cifrado</b>: la copia viaja cifrada y ni GitHub puede leerla. Si necesitas volver atrás, <b>🕘 Versiones anteriores</b> lista las copias guardadas. Y <b>↩ Deshacer restauración</b> devuelve lo que tenías antes de restaurar.</p>
+<div class="gd-warn">La protección automática impide que una copia con muchísimos menos datos reemplace la nube. Si ves ese aviso, revísalo antes de confirmar.</div>`},
+
+{id:'seguridad',ico:'🔐',t:'19. Seguridad y buenas prácticas',h:`
+<ul><li><b>Empieza en Demo.</b> Mínimo dos semanas, con una apuesta igual a la que usarías en Real.</li>
+<li><b>Empieza con poco.</b> Apuesta inicial mínima y límites bajos. Sube solo cuando los datos lo justifiquen.</li>
+<li><b>Define siempre Stop Loss y nivel máximo de martingala</b> antes de iniciar.</li>
+<li><b>No operes con dinero que necesites.</b> Usa solo lo que puedas perder.</li>
+<li><b>Protege tu token.</b> Crea uno solo con permiso trade. Revócalo si lo compartiste.</li>
+<li><b>Protege tu clave y tu pregunta de seguridad.</b> Activa la clave de cifrado de la nube.</li>
+<li><b>Revisa, no confíes a ciegas.</b> Lee el diagnóstico del horario y el informe antes de aprobar cambios.</li>
+<li><b>Ten a mano el botón de pánico.</b> Detener todo está en Centro del asistente → Operar y en el panel.</li></ul>`},
+
+{id:'actualizar',ico:'⬆️',t:'20. Actualizar la app',h:`
+<p>Cuando sale una versión nueva, la app te avisa con <b>Hay una versión nueva → Actualizar</b>. Si no aparece, sigue este proceso:</p>
+<ol><li>Detén los bots y comprueba que no haya operaciones abiertas.</li>
+<li>En el panel de administrador, sube una copia a la nube (Subir ahora).</li>
+<li>Actualiza el archivo de la app en tu repositorio o en tu computadora, según cómo la uses.</li>
+<li>Cierra la app por completo y vuelve a abrirla.</li>
+<li>En <b>Más</b> verás la versión instalada al pie.</li></ol>
+<div class="gd-tip">Tus datos se conservan porque se guardan en tu navegador y en tu copia de la nube. No borres los datos del sitio para forzar la actualización.</div>`},
+
+{id:'problemas',ico:'🩹',t:'21. Solución de problemas',h:`
+<h3>No conecta con Deriv</h3><p>Revisa que el token sea correcto, tenga permiso trade y no esté revocado. Prueba a cerrar y abrir la app. Verifica tu internet.</p>
+<h3>El bot no opera</h3><p>Mira el estado en Inicio o el diagnóstico del horario. Causas comunes: no conectado, filtro de seguridad en pausa, sin ticks del mercado, límite alcanzado o bot pausado por una regla que aprobaste.</p>
+<h3>El horario no arranca</h3><p>Verifica que esté <b>Activado</b>, que hoy sea uno de sus días activos y que la hora actual esté dentro de la ventana. Si ya terminó su sesión de hoy, lo dirá en el diagnóstico.</p>
+<h3>No llegan notificaciones</h3><p>Revisa que hayas permitido los avisos y que la categoría esté activada en Avisos y segundo plano. Envía un aviso de prueba. En algunos navegadores solo funcionan con la app instalada.</p>
+<h3>Se perdió el historial</h3><p>Si cambiaste de navegador, usa <b>Descargar y restaurar</b> con tu copia de la nube. Si restauraste una copia vieja, usa <b>🕘 Versiones anteriores</b> o <b>↩ Deshacer restauración</b>.</p>
+<h3>La app se ve mal en mi pantalla</h3><p>Prueba a girar el teléfono o usar el modo PC desde Más. Si el texto se corta, reporta el dispositivo y la versión.</p>`},
+
+{id:'glosario',ico:'📖',t:'22. Glosario',h:`
+<ul><li><b>Token:</b> llave de API de Deriv que permite operar en tu cuenta.</li>
+<li><b>Demo / Real:</b> cuenta de práctica con dinero ficticio / cuenta con dinero real.</li>
+<li><b>Contrato:</b> la operación que compras (por ejemplo, Par/Impar o Sube/Baja).</li>
+<li><b>Apuesta (stake):</b> dinero que arriesgas en una operación.</li>
+<li><b>Martingala:</b> multiplicar la apuesta después de cada pérdida.</li>
+<li><b>Stop Loss (SL):</b> pérdida máxima antes de detener el bot.</li>
+<li><b>Meta (TP):</b> ganancia objetivo antes de detener el bot tradicional.</li>
+<li><b>Equilibrio:</b> porcentaje de aciertos mínimo para no perder con ese pago.</li>
+<li><b>Muestra:</b> número de operaciones usadas para juzgar un resultado.</li>
+<li><b>Racha:</b> operaciones ganadas o perdidas seguidas.</li>
+<li><b>Caída máxima:</b> la mayor pérdida acumulada desde un máximo anterior.</li>
+<li><b>Práctica:</b> simulación con datos reales del mercado, sin dinero real.</li>
+<li><b>Backtest:</b> simulación con datos pasados.</li>
+<li><b>Segundo plano:</b> la app abierta pero no visible en pantalla.</li></ul>`}
+];
+function gdRender(q){
+  var box=document.getElementById('gd-body');if(!box)return;
+  var s=String(q||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').trim();
+  var list=GUIDE.filter(function(x){if(!s)return true;var t=(x.t+' '+x.h).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');return t.indexOf(s)>=0;});
+  box.innerHTML=list.length?list.map(function(x){return '<details class="gd-sec" id="gd-'+x.id+'"'+(s||list.length<=3?' open':'')+'><summary><span class="gd-ico">'+x.ico+'</span>'+x.t+'</summary><div class="gd-cnt">'+x.h+'</div></details>';}).join(''):'<div class="gd-empty">No encontré «'+String(q).replace(/[<>&]/g,'')+'». Prueba con otra palabra.</div>';
+  var toc=document.getElementById('gd-toc');if(toc)toc.innerHTML=GUIDE.map(function(x){return '<a href="#gd-'+x.id+'" onclick="gdJump(\''+x.id+'\');return false;">'+x.ico+' '+x.t.replace(/^\d+\.\s*/,'')+'</a>';}).join('');
+}
+function gdJump(id){var el=document.getElementById('gd-'+id);if(el){el.open=true;el.scrollIntoView({behavior:'smooth',block:'start'});}}
+function gdClose(){var m=document.getElementById('gd-overlay');if(m)m.remove();}
+function gdOpen(){
+  gdClose();
+  var m=document.createElement('div');m.id='gd-overlay';
+  m.innerHTML='<div class="gd-box"><div class="gd-top"><div class="gd-title">📘 Guía de uso</div><button type="button" class="gd-x" onclick="gdClose()" aria-label="Cerrar">✕</button></div>'
+   +'<input id="gd-q" class="gd-search" type="search" placeholder="Buscar: martingala, horario, token…" oninput="gdRender(this.value)">'
+   +'<details class="gd-toc-w" open><summary>Índice</summary><div id="gd-toc" class="gd-toc"></div></details>'
+   +'<div id="gd-body" class="gd-body"></div>'
+   +'<div class="gd-foot"><button type="button" class="gd-btn" onclick="gdClose();if(typeof _oldTut===\'function\')_oldTut();">▶ Tutorial rápido (5 pasos)</button></div></div>';
+  document.body.appendChild(m);gdRender('');
+}
+var _oldTut=typeof openTutorial==='function'?openTutorial:null;
+openTutorial=function(){gdOpen();};
 </script>
 </body>
 </html>
