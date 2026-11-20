@@ -6,21 +6,21 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="theme-color" content="#06080C">
+<meta name="theme-color" content="var(--bg)">
 <link rel="manifest" href="./manifest.json">
 <link rel="apple-touch-icon" href="icon-192.png">
 <link rel="icon" type="image/png" href="icon-192.png">
-<title>LYCAN QUANTUM (LYQ) v54 | Deriv API Compatible</title>
+<title>LYCAN QUANTUM (LYQ) v56 | Deriv API Compatible</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 /* ═══ VARIABLES ═══ */
 :root{
-  --bg:#06080C;--s1:#0A0E14;--s2:#0F1419;--s3:#141A24;
-  --bd:#1A2332;--bd2:#252E3B;
-  --t1:#E8EEF7;--t2:#8FA3B8;--t3:#4A5A6E;
-  --gold:#D4AF37;--gold2:#E8C547;
-  --grn:#10B981;--grn2:#34D399;
-  --red:#EF4444;--red2:#F87171;
+  --bg:#06080c;--s1:#0a0e14;--s2:#0f1419;--s3:#141A24;
+  --bd:#1a2332;--bd2:#252E3B;
+  --t1:#e8eef7;--t2:#8fa3b8;--t3:#4a5a6e;
+  --gold:#d4af37;--gold2:#e8c547;
+  --grn:#10b981;--grn2:#34d399;
+  --red:#ef4444;--red2:#F87171;
   --blue:#3B82F6;--blue2:#60A5FA;
   --cyan:#06B6D4;--cyan2:#22D3EE;
   --purple:#8B5CF6;--purple2:#A78BFA;
@@ -877,12 +877,12 @@ body.lq-wm-off #lq-wm{display:none;}
 .asv-w{font-size:12px;color:var(--t2);line-height:1.5;margin-top:4px;}
 .asv-tag{font-size:10px;padding:2px 8px;border-radius:10px;border:1px solid var(--bd2);color:var(--t3);font-weight:700;}
 .asv-tag.test{border-color:var(--gold);color:var(--gold2);}
-.asv-tag.ok{border-color:#10b981;color:#6ee7b7;}
+.asv-tag.ok{border-color:var(--grn);color:#6ee7b7;}
 .asv-lg{font-size:11.5px;color:var(--t2);padding:6px 0;border-bottom:1px solid var(--bd);line-height:1.45;}
 .asv-lg span{color:var(--t3);margin-right:6px;}
 
 /* ═══ CENTRO DEL ASISTENTE ═══ */
-#c2-page{position:fixed;inset:0;z-index:10080;background:var(--bg,#06080c);display:flex;flex-direction:column;overflow:hidden;}
+#c2-page{position:fixed;inset:0;z-index:10080;background:var(--bg,var(--bg));display:flex;flex-direction:column;overflow:hidden;}
 .c2-top{display:flex;align-items:center;justify-content:space-between;padding:calc(env(safe-area-inset-top,0px) + 10px) 14px 8px;}
 .c2-title{font-size:16px;font-weight:800;color:var(--gold2);}
 .c2-x{width:34px;height:34px;border-radius:50%;border:1px solid var(--bd2);background:var(--s2);color:var(--t1);font-size:14px;cursor:pointer;}
@@ -1003,6 +1003,14 @@ body:not(.lq-wm-off) .csec{background:transparent !important;}
 /* ═══ v54 · Config retirado (se conserva en el DOM para no romper el bot) ═══ */
 #sb,#ov,.mbtn,button[onclick="toggleSB()"],.mm-item[onclick*="toggleSB"]{display:none !important;}
 body.pc #sb{display:none !important;}
+
+/* ═══ v56 · LIMPIEZA ESTÉTICA ═══ */
+/* contraste del tema claro: texto secundario legible sobre blanco */
+body.light{--t3:#718096;}
+/* rendimiento: el desenfoque sobre la gráfica y los avisos consume mucha batería en el teléfono */
+*{-webkit-backdrop-filter:none !important;backdrop-filter:none !important;}
+/* la transición de fondo ya no anima toda la pantalla al cambiar de tema */
+body{transition:none !important;}
 </style>
 </head>
 <body>
@@ -9314,7 +9322,7 @@ function lqUpdateBanner(reg){
    la nube no acepta una copia con muchos menos datos sin avisar ·
    versiones anteriores del respaldo (GitHub) · deshacer la última restauración
    ═══════════════════════════════════════════════════════════════════════ */
-LQ_VERSION='v54';
+LQ_VERSION='v56';
 function cloudMergeObj(localTxt,remoteTxt){
   var a={},b={};try{a=JSON.parse(localTxt||'{}');}catch(e){lqSilent(e,'cloudMergeObj');}try{b=JSON.parse(remoteTxt||'{}');}catch(e){lqSilent(e,'cloudMergeObj');}
   if(!a||typeof a!=='object'||Array.isArray(a))a={};if(!b||typeof b!=='object'||Array.isArray(b))b={};
@@ -10778,6 +10786,54 @@ function lqKeepLogLast(){
 }
 (function(){
   setInterval(function(){try{lqMoveLog();lqKeepLogLast();}catch(e){}},2500);
+})();
+
+/* ═══════════════════════════════════════════════════════════════════════
+   v55 · CONEXIÓN ESTABLE DE CONTRATOS
+   · Cada contrato se suscribe UNA vez (antes se re-suscribía cada segundo).
+   · Al cerrarse un contrato se libera su suscripción.
+   · Si Deriv responde «subscription limit exceeded», se limpian las suscripciones
+     y se vuelve a suscribir solo lo abierto, una vez.
+   ═══════════════════════════════════════════════════════════════════════ */
+var RC={subs:{},last:0};
+reconcileContracts=function(){
+  var ids=Object.keys(OPEN_CT);
+  if(!ids.length||!ws||ws.readyState!==1)return;
+  var now=Date.now();
+  ids.forEach(function(id){
+    var s=RC.subs[id];
+    if(s&&now-s.t<120000)return;                       /* ya suscrito: no repetir */
+    try{
+      ws.send(JSON.stringify({proposal_open_contract:1,contract_id:Number(id),subscribe:1}));
+      RC.subs[id]={t:now};
+      log('🔄 Seguimiento del contrato #'+id,'i');
+    }catch(e){lqSilent(e,'reconcileContracts');}
+  });
+  RC.last=now;
+  if(activeContract!==null&&OPEN_CT[activeContract])setCTimer();
+};
+/* Resincronización periódica: como mucho cada 30 s (antes se hacía cada segundo) */
+lqResync=function(){
+  try{if(SB.on){sbSubscribe();sbWatchdog();}}catch(e){lqSilent(e,'resync');}
+  try{if(botOn&&Date.now()-RC.last>30000)reconcileContracts();}catch(e){lqSilent(e,'resync');}
+};
+(function(){
+  var _hm=handleMsg;
+  handleMsg=function(d){
+    try{
+      if(d&&d.error&&/subscription limit/i.test(String(d.error.message||d.error.code||''))){
+        log('⚠ Deriv limitó las suscripciones: se reinician y se vuelven a suscribir los contratos abiertos','w');
+        try{ws.send(JSON.stringify({forget_all:'proposal_open_contract'}));}catch(e){lqSilent(e,'limit');}
+        RC.subs={};RC.last=0;
+        setTimeout(function(){try{reconcileContracts();}catch(e){lqSilent(e,'limit');}},2000);
+      }
+      if(d&&d.msg_type==='proposal_open_contract'&&d.proposal_open_contract){
+        var c=d.proposal_open_contract;
+        if(c.is_sold===1||c.is_sold===true||c.status==='won'||c.status==='lost'){delete RC.subs[String(c.contract_id)];}
+      }
+    }catch(e){lqSilent(e,'rc');}
+    return _hm.apply(this,arguments);
+  };
 })();
 </script>
 </body>
